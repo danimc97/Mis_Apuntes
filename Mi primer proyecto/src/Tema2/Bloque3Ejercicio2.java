@@ -13,8 +13,7 @@ public class Bloque3Ejercicio2 {
 		
 		case 1:
 			int num1= Integer.parseInt(JOptionPane.showInputDialog("Introduce un numero: "));
-			Math.sqrt(num1);
-			System.out.println("La raíz es: "+num1);
+			System.out.println("La raíz es: "+Math.sqrt(num1));
 			break;
 		
 
