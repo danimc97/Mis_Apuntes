@@ -6,37 +6,44 @@ public class Bloque3Ejercicio3 {
 
 	public static void main(String[] args) {
 		
-		String menu ="---------------MENU----------------\n1.Raices\n2.Potencias\n3.Modulo de la division\n4.Suma\n5.Resta\n6.Multiplicacion\n7.Division\n---------------------------------------";
+		String menu ="---------------MENU----------------\n"
+				+ "1.Calculo de la hipotenusa de un triangulo\n"
+				+ "2.Calculo de la superficie de una circunferencia\n"
+				+ "3.Calculo del perimetro de una circunferencia\n"
+				+ "4.Calculo del area de un rectangulo\n"
+				+ "5.Calculo del area de un triangulo\n"
+				+ "6.Salir de la aplicacion\n"
+				+ "---------------------------------------";
 		int num=Integer.parseInt(JOptionPane.showInputDialog(menu));
-		float num2= Float.parseFloat(JOptionPane.showInputDialog("Introduce el primer numero: "));
-		float num3= Float.parseFloat(JOptionPane.showInputDialog("Introduce el segundo numero: "));
-		float num4= Float.parseFloat(JOptionPane.showInputDialog("Introduce el tercer numero: "));
 		String mensaje="";
 		
 		switch (num) {
 		
 		case 1://Hipotenusa
-			num2=(float) Math.sqrt((Math.pow(num3, 2))+(Math.pow(num4, 2)));
-			mensaje="El resultado es"+num2;
+			float num3= Float.parseFloat(JOptionPane.showInputDialog("Introduce un cateto: "));
+			float num4= Float.parseFloat(JOptionPane.showInputDialog("Introduce otro cateto: "));
+			mensaje="El resultado es"+(Math.sqrt((Math.pow(num3, 2))+(Math.pow(num4, 2))));
 			break;
 		case 2:// Superficie Circunferencia
-			num2=(float) (Math.PI*(Math.pow(num3, 2)));
-			mensaje="El resultado es: "+Math.pow(num2, num3);
+			float num5= Float.parseFloat(JOptionPane.showInputDialog("Introduce el radio de la circunferencia: "));
+			mensaje="El resultado es: "+(Math.PI*(Math.pow(num5, 2)));
 			break;
 		case 3:// Perimetro Circunferencia
-			mensaje="El resultado es: "+(num2%num3);
+			float num6= Float.parseFloat(JOptionPane.showInputDialog("Introduce el radio de la circunferencia: "));
+			mensaje="El resultado es: "+(2*Math.PI*num6);
 			break;
-		case 4:
-			mensaje="El sresultado es: "+(num2+num3);
+		case 4://Area del rectangulo
+			float num7= Float.parseFloat(JOptionPane.showInputDialog("Introduce la base: "));
+			float num8= Float.parseFloat(JOptionPane.showInputDialog("Introduce la altura: "));
+			mensaje="El resultado es: "+(num7*num8);
 			break;
-		case 5:
-			mensaje="El resultado es: "+(num2-num3);
+		case 5://Area de un triangulo
+			float num9= Float.parseFloat(JOptionPane.showInputDialog("Introduce la base: "));
+			float num10= Float.parseFloat(JOptionPane.showInputDialog("Introduce la altura: "));
+			mensaje="El resultado es: "+((num9*num10)/2);
 			break;
-		case 6:
-			mensaje="El resultado es: "+(num2*num3);
-			break;
-		case 7:
-			mensaje="El resultado es: "+(num2/num3);
+		case 6://Salir de la aplicacion
+			System.exit(0);
 			break;
 
 		}
