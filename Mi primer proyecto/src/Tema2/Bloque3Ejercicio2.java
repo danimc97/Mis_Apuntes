@@ -24,7 +24,7 @@ public class Bloque3Ejercicio2 {
 			mensaje="El resultado es: "+(num2%num3);
 			break;
 		case 4:
-			mensaje="El sresultado es: "+(num2+num3);
+			mensaje="El resultado es: "+(num2+num3);
 			break;
 		case 5:
 			mensaje="El resultado es: "+(num2-num3);
