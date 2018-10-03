@@ -6,7 +6,7 @@ public class Bloque3Ejercicio2 {
 
 	public static void main(String[] args) {
 		
-		String menu ="---------------MENU----------------\n1.Raices\n2.Potencias\n3.Modulo de la division\n4.Suma\n5.Resta\n6.Multiplicacion\n7.Division\n---------------------------------------";
+		String menu ="---------------MENU-----------------\n1.Raices\n2.Potencias\n3.Modulo de la division\n4.Suma\n5.Resta\n6.Multiplicacion\n7.Division\n---------------------------------------";
 		int num=Integer.parseInt(JOptionPane.showInputDialog(menu));
 		int num2= Integer.parseInt(JOptionPane.showInputDialog("Introduce el primer numero: "));
 		int num3= Integer.parseInt(JOptionPane.showInputDialog("Introduce el segundo numero: "));
