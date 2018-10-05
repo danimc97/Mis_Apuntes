@@ -2,25 +2,24 @@ package Tema3;
 
 import javax.swing.JOptionPane;
 
-public class Bloque2Ejercicio1 {
+public class Ejercicio3 {
 
 	public static void main(String[] args) {
 		
 		int tope=Integer.parseInt(JOptionPane.showInputDialog("Introduce el numero de veces: "));
+		int p=0;
+		int n=0;
 		int num;
-		int suma=0;
-		int media;
-		for (int i=1; i<=tope;i++) {
-			
+		for (int i=1;i<=tope;i++) {
 			num=Integer.parseInt(JOptionPane.showInputDialog("Introduce un numero: "));
-			suma+=num;
-
+			if (num>0) {
+				p++;
+			}
+			else {
+				n++;
+			}
 		}
-		
-		media=suma/tope;
-		
-		System.out.println("La media es "+media);
-
+		System.out.println("Numeros positivos: "+p);
+		System.out.println("Numeros negativos: "+n);
 	}
-
 }
