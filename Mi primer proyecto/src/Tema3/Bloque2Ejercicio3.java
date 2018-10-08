@@ -11,15 +11,16 @@ public class Bloque2Ejercicio3 {
 		int num2=num;
 		
 		
-		for (int i=0;num2==1;i++) {
+		for (int i=0;num2>=1;i++) {
 			
-			division=num%num2-1;
+			division=num%num2;
 			
 			if (division==0) {
 				
 				System.out.println(num2);
 				
 			}
+			num2=num2-1;
 			
 		}
 

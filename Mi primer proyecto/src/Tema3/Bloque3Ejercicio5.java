@@ -2,12 +2,14 @@ package Tema3;
 
 import javax.swing.JOptionPane;
 
-public class Bloque3Ejercicio4 {
+public class Bloque3Ejercicio5 {
 
 	public static void main(String[] args) {
 		
-		int menor=0;
+		int menormayor=0;
 		int num=1;
+		int menor=0;
+		int mayor=0;
 		for (int i=0;num!=0;i++) {
 			
 			if (i==0) {
