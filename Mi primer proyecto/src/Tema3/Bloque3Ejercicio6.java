@@ -8,16 +8,17 @@ public class Bloque3Ejercicio6 {
 		
 		int num=1;
 		int mul=0;
-		for (int i=0;num!=0;i++) {
+		for (;num!=0;) {
 			num=Integer.parseInt(JOptionPane.showInputDialog("Introduce un numero: "));
-			if(num==0) {
-				System.out.println("Error");
-			}
-			else {
+			if(num!=0) {
 				for (int o=0;o<=10;o++) {
 					mul=num*o;
-					System.out.println(num+"x"+o+"="+mul);		
-				}
+					System.out.println(num+"x"+o+"="+mul);
+					if (o==10) {
+						System.out.println("-----------------------------");
+					}
+			}
+					
 		}	
 	}
 	}
