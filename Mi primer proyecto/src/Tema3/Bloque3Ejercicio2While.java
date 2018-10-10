@@ -17,8 +17,6 @@ public class Bloque3Ejercicio2While {
 			num=Integer.parseInt(JOptionPane.showInputDialog("Introduzca numero: "));
 			media=suma/i;
 		}
-		
-		System.out.println("La suma es: "+suma);
 		System.out.println("La media es "+media);
 	}
 
