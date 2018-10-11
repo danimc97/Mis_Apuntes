@@ -47,7 +47,7 @@ public class ParesONones {
 			modulo=resultado%2;
 			
 			if(modulo!=0) {
-				JOptionPane.showMessageDialog(null, "¡Has perdido! el numero es el "+resultado);		
+				JOptionPane.showMessageDialog(null, "¡Has ganado! el numero es el "+resultado);		
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "¡Has perdido! el numero es el "+resultado);	
