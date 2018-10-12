@@ -7,17 +7,13 @@ public class Los1000Numeros {
 		int suma=0;
 		int media=0;
 		int num;
-		
-		for (int i=1;i<=10000;i++) {
-			
+		int i;
+		for (i=0;i<=10000;i++) {
 			num=(int) Math.round(Math.random()*1000);
-			
-			suma+=num;
-			media=suma/10000;
-			
+			suma=suma+num;
 		}
-		System.out.println();
-
+		media=suma/i;
+		System.out.println("La suma es: "+suma);
+		System.out.println("La media es: "+media);
 	}
-
 }
