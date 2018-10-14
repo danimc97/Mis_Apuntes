@@ -58,6 +58,15 @@ public class CartaMasAlta {
 							System.out.println("¡Ganas tú!");
 							
 						}
+						else {
+							
+							if (palocpu==palohum&&cartacpu==cartahum) {
+								
+								System.out.println("¡Empate!");
+								
+							}
+							
+						}
 					}	
 				}
 			}
