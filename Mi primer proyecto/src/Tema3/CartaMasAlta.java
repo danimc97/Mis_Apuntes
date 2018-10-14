@@ -23,57 +23,53 @@ public class CartaMasAlta {
 		
 		if (num==1) {
 		
-		
-		cartacpu=(int) (Math.random()*13);
-		palocpu=(int) (Math.random()*3);
-		System.out.println("CPU= Carta: "+cartacpu+" Palo: "+palocpu);
-		
-		
-		cartahum=(int) (Math.random()*13);
-		palohum=(int) (Math.random()*3);
-		System.out.println("Tú= Carta: "+cartahum+" Palo: "+palohum);
-		
-		if (palocpu>palohum) {
 			
-			System.out.println("¡Gana la CPU!");
+			cartacpu=(int) (Math.random()*13)+2;
+			palocpu=(int) (Math.random()*3)+1;
+			System.out.println("CPU= Carta: "+cartacpu+" Palo: "+palocpu);
 			
-		}
-		else {
-			if (palocpu<palohum) {
-				
-				System.out.println("¡Ganas tú!");
-				
-			}
-			else {
-		
-		
-				if (palocpu==palohum&&cartacpu>cartahum) {
-					
-					System.out.println("¡Gana la CPU!");
-					
-				}
-				else {
-						if (palocpu==palohum&&cartacpu<cartahum) {
-							
-							System.out.println("¡Ganas tú!");
-							
-						}
-						else {
-							
-							if (palocpu==palohum&&cartacpu==cartahum) {
+			
+			cartahum=(int) (Math.random()*13)+2;
+			palohum=(int) (Math.random()*3)+1;
+			System.out.println("Tú= Carta: "+cartahum+" Palo: "+palohum);
+			
+			
+					if (cartacpu>cartahum) {
+						
+						System.out.println("¡Gana la CPU!");
+						
+					}
+					else {
+							if (cartacpu<cartahum) {
 								
-								System.out.println("¡Empate!");
+								System.out.println("¡Ganas tú!");
 								
 							}
-							
-						}
-					}	
+							else {
+								
+								if (cartacpu==cartahum&&palocpu>palohum) {
+									
+									System.out.println("¡Gana la CPU!");
+									
+								}
+								else {
+									
+									if (cartacpu==cartahum&&palocpu<palohum) {
+										
+										System.out.println("¡Ganas tú!");
+										
+									}
+									else {
+										
+										System.out.println("¡Empate!");
+										
+									}
+									
+								}
+								
+							}
+						}	
+					}
 				}
-			}
-		
-		
-		}
-
-	}
 
 }
