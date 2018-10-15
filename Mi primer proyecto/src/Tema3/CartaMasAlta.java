@@ -25,11 +25,18 @@ public class CartaMasAlta {
 		
 			
 			cartacpu=(int) (Math.random()*13)+2;
+			if (cartacpu>13) {
+				cartacpu-=2;
+			}
 			palocpu=(int) (Math.random()*3)+1;
 			System.out.println("CPU= Carta: "+cartacpu+" Palo: "+palocpu);
 			
 			
+			
 			cartahum=(int) (Math.random()*13)+2;
+			if (cartahum>13) {
+				cartahum-=2;
+			}
 			palohum=(int) (Math.random()*3)+1;
 			System.out.println("Tú= Carta: "+cartahum+" Palo: "+palohum);
 			
