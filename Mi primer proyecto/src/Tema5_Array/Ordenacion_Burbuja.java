@@ -26,7 +26,7 @@ public class Ordenacion_Burbuja {
 				
 				if (array[i]>array[j]) {	
 					
-					aux=array[i];;
+					aux=array[i];
 					array[i]=array[j];
 					array[j]=aux;	
 				}

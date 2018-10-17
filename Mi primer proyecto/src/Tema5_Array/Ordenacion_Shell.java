@@ -2,7 +2,7 @@ package Tema5_Array;
 
 import javax.swing.JOptionPane;
 
-public class Ordenacion_InsercionDirecta {
+public class Ordenacion_Shell {
 
 	public static void main(String[] args) {
 		
@@ -36,7 +36,5 @@ public class Ordenacion_InsercionDirecta {
 		for (i=0;i<array.length;i++) {
 			System.out.print(array[i]+" ");
 		}
-		
 	}
-
 }
