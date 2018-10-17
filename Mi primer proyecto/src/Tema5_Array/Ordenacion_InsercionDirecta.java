@@ -2,7 +2,7 @@ package Tema5_Array;
 
 import javax.swing.JOptionPane;
 
-public class Ordenacion_Burbuja {
+public class Ordenacion_InsercionDirecta {
 
 	public static void main(String[] args) {
 		
@@ -22,15 +22,8 @@ public class Ordenacion_Burbuja {
 		
 		for (i=0;i<array.length-1;i++) {
 			
-			for (j=1+i;j<array.length;j++) {
-				
-				if (array[i]>array[j]) {	
-					
-					aux=array[i];
-					array[i]=array[j];
-					array[j]=aux;	
-				}
-			}
+			
+			
 		}
 		System.out.println();
 		for (i=0;i<array.length;i++) {

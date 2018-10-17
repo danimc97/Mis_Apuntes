@@ -14,13 +14,14 @@ public class Bloque2Ejercicio5 {
 			System.out.print(array[i]+" ");
 		}
 		System.out.println("\n");
-		int ultimo=array[array.length-1];
+		int ultimo=array[4];
 		
-		for (i=array.length-1;i>-1;i--) {
+		for (i=array.length-1;i>0;i--) {
 			array[i]=array[i-1];
-			System.out.print(array[i]+" ");
 		}
-		array[0]=ultimo;
+		array[i]=ultimo;
+		
+		for (i=0;i<array.length;i++)
 		System.out.print(array[i]+" ");
 		
 	}
