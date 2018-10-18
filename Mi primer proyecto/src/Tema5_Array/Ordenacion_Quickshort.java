@@ -2,16 +2,16 @@ package Tema5_Array;
 
 import javax.swing.JOptionPane;
 
-public class Ordenacion_Shell {
+public class Ordenacion_Quickshort {
 
 	public static void main(String[] args) {
 		
-		int array[]= new int[10];
+		int array[]= new int[6];
 		int num=0;
 		int i=0;
-		int j=0;
+		int j=5;
 		int aux;
-		boolean cambios;
+		int pivote;
 		
 		for (i=0;i<array.length;i++) {
 			num=(int) Math.round(Math.random()*100);
@@ -21,25 +21,27 @@ public class Ordenacion_Shell {
 		
 		System.out.println();
 		
-		for (i=array.length/2;i!=0;i/=2) {
+		i=0;
+		
+		pivote=array[0];
+		
+		while (i<j) {
 			
-			cambios=true;
-			
-			while (cambios) {
-				cambios=false;
-				
-				for (j=i;j<array.length;j++) {
-					
-					if (array[j-i]>array[j]) {
-						
-						aux=array[j-i];
-						array[j-i]=array[j];
-						array[j]=aux;
-						cambios=true;
-					}
-				}
+			while (array[i]<=pivote && i<j) {
+				i++;
 			}
+				while (array[j]>pivote) {
+					j--;
+				}
+					if(i<j) {
+						aux=array[i];
+						array[i]=array[j];
+						array[j]=aux;
+					}
 		}
+		array[i]=array[j];
+		array[j]=pivote;
+		
 		
 		System.out.println();
 		for (i=0;i<array.length;i++) {
