@@ -11,8 +11,10 @@ public class Ordenacion_Shell {
 		int i=0;
 		int j=0;
 		int aux;
+		int div=0;
+		boolean cambios;
 		
-		for (i=0;i<=4;i++) {
+		for (i=0;i<array.length;i++) {
 			num=(int) Math.round(Math.random()*100);
 			array[i]=num;
 			System.out.print(array[i]+" ");
@@ -20,31 +22,19 @@ public class Ordenacion_Shell {
 		
 		System.out.println();
 		
-		for (i=5;i<10;i++) {
-			num=(int) Math.round(Math.random()*100);
-			array[i]=num;
-			System.out.print(array[i]+" ");
-		}
+		div=array.length/2;
 		
+		for(i=0;i<array.length;i++) {
 		
-		System.out.println();
-		
-		for (i=0;i<=4;i++) {
 			
-			for (j=1+i;j<=4;j++) {
-				
-				if (array[i]>array[j]) {	
-					
-					aux=array[i];
-					array[i]=array[j];
-					array[j]=aux;	
-				}
-			}
+			
 			
 		}
 		System.out.println();
-		for (i=0;i<=4;i++) {
+		for (i=0;i<array.length;i++) {
 			System.out.print(array[i]+" ");
 		}
+		
 	}
+
 }
