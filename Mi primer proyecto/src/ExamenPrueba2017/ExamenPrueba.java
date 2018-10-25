@@ -21,42 +21,59 @@ public class ExamenPrueba {
 		switch (num){
 		
 			case 1 : 
-				
-				int base=Integer.parseInt(JOptionPane.showInputDialog("Introduzca la base: "));
-				int altura=Integer.parseInt(JOptionPane.showInputDialog("Introduzca la altura: "));
-				
-				int area= (base*altura)/2;
-				
-				JOptionPane.showMessageDialog(null, "El area es "+area);
+				JOptionPane.showMessageDialog(null, "El area es "+AreaTriangulo(5,6));
 				break;
 			
 			case 2: 
-				
-				int radio=Integer.parseInt(JOptionPane.showInputDialog("Introduzca el radio: "));
-				
-				float perimetro=(float) (Math.PI*Math.pow(radio, 2));
-				
-				JOptionPane.showMessageDialog(null, "El perimetro es "+perimetro);
+				JOptionPane.showMessageDialog(null, "El perimetro es "+PerimetroCircunferencia());
 				break;
 				
 			case 3: 
 				
 				while (num1!=47) {
 				
-					num1=(int) Math.round(Math.random()*100);
+					num1=NumeroAleatorio();
 					
 					if (num1!=47) {
 					
 					System.out.println(num1);
 					}
 				
-				}
+				}int base=Integer.parseInt(JOptionPane.showInputDialog("Introduzca la base: "));
+				int altura=Integer.parseInt(JOptionPane.showInputDialog("Introduzca la altura: "));
+				
+				int area= (base*altura)/2;
 				break;
 				
 			default: JOptionPane.showMessageDialog(null, "Error");
 			break;
 			}
 		}
+	}
+	
+	
+	public static int NumeroAleatorio () {
+		
+		int num1=0;
+		num1=(int) Math.round(Math.random()*100);
+		return num1;
+	}
+	
+	public static float PerimetroCircunferencia () {
+		
+		int radio=Integer.parseInt(JOptionPane.showInputDialog("Introduzca el radio: "));
+		
+		float perimetro=(float) (Math.PI*Math.pow(radio, 2));
+		
+		return perimetro;
+	}
+	
+	public static int AreaTriangulo (int base, int altura) {
+	
+		int area= (base*altura)/2;
+		
+		return area;
+		
 	}
 
 }
