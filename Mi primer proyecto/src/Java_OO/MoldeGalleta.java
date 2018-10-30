@@ -13,7 +13,7 @@ public class MoldeGalleta {
 		
 		numero=valor;
 		
-	}
+	} 
 	
 	/**
 	 * 
