@@ -30,8 +30,8 @@ public class Antigüedades {
 
 	@Override
 	public String toString() {
-		return "Antigüedades [Año=" + getAño() + ", Origen=" + getOrigen() + ", Precio=" + getPrecio()
-				+ "]";
+		return "Antigüedades Año=" + getAño() + ", Origen=" + getOrigen() + ", Precio=" + getPrecio()
+				+ "";
 	}
 	
 	
