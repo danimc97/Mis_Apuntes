@@ -1,17 +1,17 @@
 package Matriculaciones;
 
-public class matricula {
+public class Matricula {
 
 	private String fecha;
 	private String codigo;
 	
 	
-	public matricula() {
+	public Matricula() {
 		super();
 	}
 
 
-	public matricula(String fecha, String codigo) {
+	public Matricula(String fecha, String codigo) {
 		super();
 		this.fecha = fecha;
 		this.codigo = codigo;

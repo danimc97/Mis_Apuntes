@@ -1,6 +1,6 @@
 package Matriculaciones;
 
-public class personaD extends persona {
+public class personaD extends Persona {
 
 	private String dni;
 

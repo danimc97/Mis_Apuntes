@@ -1,6 +1,6 @@
 package Matriculaciones;
 
-public class eso extends matricula {
+public class eso extends Matricula {
 
 	private boolean pmal;
 

@@ -1,6 +1,6 @@
 package Matriculaciones;
 
-public class fp extends matricula {
+public class fp extends Matricula {
 
 	private boolean dual;
 

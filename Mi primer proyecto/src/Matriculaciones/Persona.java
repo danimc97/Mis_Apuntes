@@ -1,18 +1,18 @@
 package Matriculaciones;
 
-public class persona {
+public class Persona {
 	
 	private String nombre;
 	private String apellidos;
 	private String fechaNacimiento;
 	
 	
-	public persona() {
+	public Persona() {
 		super();
 	}
 
 
-	public persona(String nombre, String apellidos, String fechaNacimiento) {
+	public Persona(String nombre, String apellidos, String fechaNacimiento) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;

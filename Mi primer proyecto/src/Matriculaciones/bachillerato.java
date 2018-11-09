@@ -1,6 +1,6 @@
 package Matriculaciones;
 
-public class bachillerato extends matricula {
+public class bachillerato extends Matricula {
 
 	private String modalidad;
 
