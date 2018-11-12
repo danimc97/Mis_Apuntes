@@ -14,6 +14,11 @@ public class ArbolPrincipal {
 		rama01.setExtension1(new Fruto());
 		rama01.setExtension2(new Rama());
 		rama01.setExtension3(null);
+		
+		
+		
+			
+		
 
 	}
 
