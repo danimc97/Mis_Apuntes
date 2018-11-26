@@ -8,40 +8,63 @@ public class Principal {
 
 	public static void main(String[] args) {
 		
-		int j=0;
+		char barra='_';
 		Jugador jugador=new Jugador();
 		String introduceUsuario;
 		String palabras[]= new String[] {"Thor", "Hulk", "Lokii"};
 		String palabra= palabras[(int) Math.round(Math.random()*(palabras.length-1))];
 		int contadorDeFallos=0;
+		boolean existeLetra=false;
+		int verificacionPalabraEntera=0;
 		
 		System.out.println("La palabra es: "+palabra);
-		System.out.println();
 		
 		char coincidencia[]= new char [palabra.length()];
 		
 		for (int i=0;i<coincidencia.length;i++) {
 			coincidencia[i]='_';
-			System.out.print(coincidencia[i]+" ");
 		}
 		
 		
-		introduceUsuario=JOptionPane.showInputDialog("Introduce una letra o la palabra: ");
-		
-		if (introduceUsuario.length()==1) {
+		do {
+			verificacionPalabraEntera=0;
+			for (int i=0;i<coincidencia.length;i++) {
+				System.out.print(coincidencia[i]+" ");
+			}
+			System.out.println();
 			
+			introduceUsuario=JOptionPane.showInputDialog("Introduce una letra o la palabra: ");
 			
-		}
-		else {
+			if (introduceUsuario.length()==1) {
 				
-			if (introduceUsuario.equals(palabra)){
-				System.out.println("¡Enhorabuena! Has acertado la palabra");
+				char charUsuario= introduceUsuario.charAt(0);
+				for (int i=0;i<palabra.length();i++) {
+					if(charUsuario==palabra.charAt(i)) {
+						coincidencia[i]=charUsuario;
+						existeLetra=true;
+					}
+				}
+				if(existeLetra==false) {	
+					JOptionPane.showMessageDialog(null, "No es correcto, inténtalo de nuevo");
+					contadorDeFallos++;
+				}
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "No es correcto, inténtalo de nuevo");
+				if (introduceUsuario.equals(palabra)){
+					System.out.println("¡Enhorabuena! Has acertado la palabra");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "No es correcto, inténtalo de nuevo");
+					contadorDeFallos++;
+				}
 			}
-				
-				
-		}
+			for (int i=0;i<palabra.length();i++) {
+				if (barra==coincidencia[i]) {
+					verificacionPalabraEntera++;
+				}
+			}
+		}while(!(contadorDeFallos==6) || (verificacionPalabraEntera==0));
+		
+		
 	}
 }
