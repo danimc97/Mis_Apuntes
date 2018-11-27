@@ -16,6 +16,7 @@ public class Principal {
 		int contadorDeFallos=0;
 		boolean existeLetra=false;
 		int verificacionPalabraEntera=0;
+		boolean palabraEntera=false;
 		
 		System.out.println("La palabra es: "+palabra);
 		
@@ -53,6 +54,7 @@ public class Principal {
 			else {
 				if (introduceUsuario.equals(palabra)){
 					System.out.println("¡Enhorabuena! Has acertado la palabra");
+					palabraEntera=true;
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "No es correcto, inténtalo de nuevo");
@@ -68,7 +70,7 @@ public class Principal {
 				System.out.print(coincidencia[i]+" ");
 			}
 			System.out.println();
-		}while(!((contadorDeFallos==6) || (verificacionPalabraEntera==0)));
+		}while(!((contadorDeFallos==6) || (verificacionPalabraEntera==0 || palabraEntera==true)));
 		
 		
 	}
