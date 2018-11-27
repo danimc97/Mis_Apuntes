@@ -24,14 +24,15 @@ public class Principal {
 		for (int i=0;i<coincidencia.length;i++) {
 			coincidencia[i]='_';
 		}
+		for (int i=0;i<coincidencia.length;i++) {
+			System.out.print(coincidencia[i]+" ");
+		}
+		System.out.println();
 		
 		
 		do {
 			verificacionPalabraEntera=0;
-			for (int i=0;i<coincidencia.length;i++) {
-				System.out.print(coincidencia[i]+" ");
-			}
-			System.out.println();
+			
 			
 			introduceUsuario=JOptionPane.showInputDialog("Introduce una letra o la palabra: ");
 			
@@ -63,7 +64,11 @@ public class Principal {
 					verificacionPalabraEntera++;
 				}
 			}
-		}while(!(contadorDeFallos==6) || (verificacionPalabraEntera==0));
+			for (int i=0;i<coincidencia.length;i++) {
+				System.out.print(coincidencia[i]+" ");
+			}
+			System.out.println();
+		}while(!((contadorDeFallos==6) || (verificacionPalabraEntera==0)));
 		
 		
 	}
