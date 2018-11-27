@@ -6,30 +6,46 @@ import javax.swing.JOptionPane;
 
 public class Principal {
 
+	static char barra='_';
+	Jugador jugador=new Jugador();
+	static String introduceUsuario;
+	static String palabras[]= new String[] {"Thor", "Hulk", "Lokii"};
+	static String palabra= palabras[(int) Math.round(Math.random()*(palabras.length-1))];
+	static int contadorDeFallos=0;
+	static boolean existeLetra=false;
+	static int verificacionPalabraEntera=0;
+	static boolean palabraEntera=false;
+	static char coincidencia[]= new char [palabra.length()];
+	
 	public static void main(String[] args) {
 		
-		char barra='_';
-		Jugador jugador=new Jugador();
-		String introduceUsuario;
-		String palabras[]= new String[] {"Thor", "Hulk", "Lokii"};
-		String palabra= palabras[(int) Math.round(Math.random()*(palabras.length-1))];
-		int contadorDeFallos=0;
-		boolean existeLetra=false;
-		int verificacionPalabraEntera=0;
-		boolean palabraEntera=false;
-		
 		System.out.println("La palabra es: "+palabra);
-		
-		char coincidencia[]= new char [palabra.length()];
-		
 		for (int i=0;i<coincidencia.length;i++) {
 			coincidencia[i]='_';
-		}
-		for (int i=0;i<coincidencia.length;i++) {
 			System.out.print(coincidencia[i]+" ");
 		}
+
 		System.out.println();
 		
+		comprobarAciertoFallo();
+		
+		
+		if (verificacionPalabraEntera==0 || palabraEntera==true) {
+			System.out.println("¡Enhorabuena! Has acertado la palabra");
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static void comprobarAciertoFallo() {
 		
 		do {
 			verificacionPalabraEntera=0;
@@ -53,7 +69,7 @@ public class Principal {
 			}
 			else {
 				if (introduceUsuario.equals(palabra)){
-					System.out.println("¡Enhorabuena! Has acertado la palabra");
+					
 					palabraEntera=true;
 				}
 				else {
@@ -72,6 +88,6 @@ public class Principal {
 			System.out.println();
 		}while(!((contadorDeFallos==6) || (verificacionPalabraEntera==0 || palabraEntera==true)));
 		
-		
 	}
+	
 }
