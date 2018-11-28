@@ -7,9 +7,9 @@ import javax.swing.JOptionPane;
 public class Principal {
 
 	static char barra='_';
-	Jugador jugador=new Jugador();
+	static Jugador jugador=new Jugador();
 	static String introduceUsuario;
-	static String palabras[]= new String[] {"Thor", "Hulk", "Lokii"};
+	static String palabras[]= new String[] {"Lokii", "Thor", "Hulk", "Ironman", "Spiderman"};
 	static String palabra= palabras[(int) Math.round(Math.random()*(palabras.length-1))];
 	static int contadorDeFallos=0;
 	static boolean existeLetra=false;
@@ -33,6 +33,13 @@ public class Principal {
 		if (verificacionPalabraEntera==0 || palabraEntera==true) {
 			System.out.println("¡Enhorabuena! Has acertado la palabra");
 		}
+		else {
+			for (int i=0;i<palabra.length();i++) {
+				coincidencia[i]=palabra.charAt(i);
+				System.out.print(coincidencia[i]+" ");
+			}
+			System.out.println("Lo siento, has perdido. ¡Suerte la próxima vez!");
+		}
 		
 	}
 	
@@ -49,19 +56,11 @@ public class Principal {
 		
 		do {
 			verificacionPalabraEntera=0;
-			
-			
+			existeLetra=false;
 			introduceUsuario=JOptionPane.showInputDialog("Introduce una letra o la palabra: ");
-			
+
 			if (introduceUsuario.length()==1) {
-				
-				char charUsuario= introduceUsuario.charAt(0);
-				for (int i=0;i<palabra.length();i++) {
-					if(charUsuario==palabra.charAt(i)) {
-						coincidencia[i]=charUsuario;
-						existeLetra=true;
-					}
-				}
+				unaLetra();
 				if(existeLetra==false) {	
 					JOptionPane.showMessageDialog(null, "No es correcto, inténtalo de nuevo");
 					contadorDeFallos++;
@@ -69,8 +68,7 @@ public class Principal {
 			}
 			else {
 				if (introduceUsuario.equals(palabra)){
-					
-					palabraEntera=true;
+					unaPalabra();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "No es correcto, inténtalo de nuevo");
@@ -82,12 +80,30 @@ public class Principal {
 					verificacionPalabraEntera++;
 				}
 			}
-			for (int i=0;i<coincidencia.length;i++) {
-				System.out.print(coincidencia[i]+" ");
-			}
-			System.out.println();
-		}while(!((contadorDeFallos==6) || (verificacionPalabraEntera==0 || palabraEntera==true)));
+		}while(!((contadorDeFallos==jugador.getFallos()) || (verificacionPalabraEntera==0 || palabraEntera==true)));
 		
+	}
+	
+	public static void unaLetra() {
+		for (int i=0;i<palabra.length();i++) {
+			char charUsuario= introduceUsuario.charAt(0);
+			if(charUsuario==palabra.charAt(i)) {
+				coincidencia[i]=charUsuario;
+				existeLetra=true;
+				for (int j=0;j<coincidencia.length;j++) {
+					System.out.print(coincidencia[j]+" ");
+				}
+				System.out.println();
+			}
+		}
+	}
+	
+	public static void unaPalabra() {
+		palabraEntera=true;
+		for (int i=0;i<palabra.length();i++) {
+			coincidencia[i]=palabra.charAt(i);
+			System.out.print(coincidencia[i]+" ");
+		}
 	}
 	
 }
