@@ -67,7 +67,7 @@ public class Principal {
 				}
 			}
 			else {
-				if (introduceUsuario.equals(palabra)){
+				if (introduceUsuario.equalsIgnoreCase(palabra)){
 					unaPalabra();
 				}
 				else {
@@ -80,7 +80,7 @@ public class Principal {
 					verificacionPalabraEntera++;
 				}
 			}
-		}while(!((contadorDeFallos==jugador.getFallos()) || (verificacionPalabraEntera==0 || palabraEntera==true)));
+		}while(!((contadorDeFallos==jugador.getFallos()) || (verificacionPalabraEntera==0 || palabra.equalsIgnoreCase(introduceUsuario))));
 		
 	}
 	
