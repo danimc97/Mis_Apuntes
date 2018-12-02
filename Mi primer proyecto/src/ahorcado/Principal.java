@@ -19,6 +19,8 @@ public class Principal {
 	
 	public static void main(String[] args) {
 		
+		Ventana ventana=new Ventana();
+		
 		System.out.println("La palabra es: "+palabra);
 		for (int i=0;i<coincidencia.length;i++) {
 			coincidencia[i]='_';
@@ -80,6 +82,7 @@ public class Principal {
 					verificacionPalabraEntera++;
 				}
 			}
+			
 		}while(!((contadorDeFallos==jugador.getFallos()) || (verificacionPalabraEntera==0 || palabra.equalsIgnoreCase(introduceUsuario))));
 		
 	}
