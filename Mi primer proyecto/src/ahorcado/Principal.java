@@ -7,6 +7,8 @@ import javax.swing.JOptionPane;
 public class Principal {
 
 	static char barra='_';
+	static String hint="hint";
+	static String god="god";
 	static Jugador jugador=new Jugador();
 	static String introduceUsuario;
 	static String palabras[]= new String[] {"Lokii", "Thor", "Hulk", "Ironman", "Spiderman"};
@@ -15,6 +17,8 @@ public class Principal {
 	static boolean existeLetra=false;
 	static int verificacionPalabraEntera=0;
 	static boolean palabraEntera=false;
+	static boolean hintb=false;
+	static boolean godMode=false;
 	static char coincidencia[]= new char [palabra.length()];
 	
 	public static void main(String[] args) {
@@ -60,6 +64,12 @@ public class Principal {
 			verificacionPalabraEntera=0;
 			existeLetra=false;
 			introduceUsuario=JOptionPane.showInputDialog("Introduce una letra o la palabra: ");
+			
+			if (introduceUsuario.equals(god)) {
+				jugador.setFallos(-1);
+				godMode=true;
+				JOptionPane.showMessageDialog(null, "Has activado el modo Dios");
+			}
 
 			if (introduceUsuario.length()==1) {
 				unaLetra();
@@ -73,8 +83,7 @@ public class Principal {
 					unaPalabra();
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "No es correcto, inténtalo de nuevo");
-					contadorDeFallos++;
+					cheatHint();
 				}
 			}
 			for (int i=0;i<palabra.length();i++) {
@@ -103,10 +112,33 @@ public class Principal {
 	
 	public static void unaPalabra() {
 		palabraEntera=true;
+		System.out.println();
 		for (int i=0;i<palabra.length();i++) {
 			coincidencia[i]=palabra.charAt(i);
 			System.out.print(coincidencia[i]+" ");
 		}
 	}
 	
+	public static void cheatHint() {
+		if (introduceUsuario.equals(hint) && hintb==false) {
+			JOptionPane.showMessageDialog(null, "Has activado una pista");
+			int num=(int) Math.round(Math.random()*palabra.length());
+			char charUsuario=palabra.charAt(num);
+			coincidencia[num]=charUsuario;
+			for (int j=0;j<coincidencia.length;j++) {
+	
+				if(coincidencia[num]==palabra.charAt(j)) {
+					coincidencia[j]=coincidencia[num];
+				}
+				System.out.print(coincidencia[j]+" ");
+			}
+			hintb=true;
+		}
+		else {
+			if (!introduceUsuario.equals(god)) {
+				JOptionPane.showMessageDialog(null, "No es correcto, inténtalo de nuevo");
+				contadorDeFallos++;
+			}
+		}
+	}
 }

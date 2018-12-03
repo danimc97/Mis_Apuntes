@@ -3,7 +3,10 @@ package ahorcado;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -79,8 +82,21 @@ public class Ventana extends Canvas {
 		//Pintando la cuerda
 				g.drawLine(313, 30, 313, 80);
 				
-				
-		
+		//Imagen de fondo
+				g.drawImage(getImagen("tableroOca.png"), 0, 0, this);
+	}
+	
+	public BufferedImage getImagen(String nombre) {
+		URL url=null;
+		try {
+			url = getClass().getResource("/tutorialJava/capitulo4_OO/ejercicios/ejercicioExtra02_La_Oca/recursos/" + nombre);
+			return ImageIO.read(url);
+		} catch (Exception e) {
+			System.out.println("No se pudo cargar la imagen " + nombre +" de "+url);
+			System.out.println("El error fue : "+e.getClass().getName()+" "+e.getMessage());
+			System.exit(0);
+			return null;
+		}
 	}
 	
 	public static Ventana getVentana() {
