@@ -4,61 +4,45 @@ import java.lang.reflect.Array;
 
 import javax.swing.JOptionPane;
 
-public class Principal {
+public class mierda {
 
 	static char barra='_';
-	static String hint="hint";
-	static String god="god";
 	static Jugador jugador=new Jugador();
 	static String introduceUsuario;
 	static String palabras[]= new String[] {"Lokii", "Thor", "Hulk", "Ironman", "Spiderman"};
-	static String palabra= palabras[(int) Math.round(Math.random()*(palabras.length-1))];
 	static String arrayDeFallos[]=new String[6];
+	static String palabra= palabras[(int) Math.round(Math.random()*(palabras.length-1))];
 	static int contadorDeFallos=0;
 	static int contArrayDeFallos=0;
 	static boolean existeLetra=false;
 	static int verificacionPalabraEntera=0;
 	static boolean palabraEntera=false;
-	static boolean hintb=false;
-	static boolean godMode=false;
-	static boolean repararAcierto=false;
 	static char coincidencia[]= new char [palabra.length()];
 	
 	public static void main(String[] args) {
 		
+		Ventana ventana=new Ventana();
+		
 		System.out.println("La palabra es: "+palabra);
 		for (int i=0;i<coincidencia.length;i++) {
 			coincidencia[i]='_';
+			System.out.print(coincidencia[i]+" ");
 		}
-		
-		for (int i=0;i<arrayDeFallos.length;i++) {
-			arrayDeFallos[i]="";
-		}
-		
-		Ventana ventana=new Ventana();
-		
+
 		System.out.println();
 		
 		comprobarAciertoFallo();
 		
 		
-		if (palabraEntera==true) {
+		if (verificacionPalabraEntera==0 || palabraEntera==true) {
 			System.out.println("¡Enhorabuena! Has acertado la palabra");
-			ventana.getVentana().repaint();
 		}
 		else {
-			if(verificacionPalabraEntera==0) {
-				repararAcierto=true;
-				System.out.println("¡Enhorabuena! Has acertado la palabra");
-				ventana.getVentana().repaint();
+			for (int i=0;i<palabra.length();i++) {
+				coincidencia[i]=palabra.charAt(i);
+				System.out.print(coincidencia[i]+" ");
 			}
-			else {
-				for (int i=0;i<palabra.length();i++) {
-					coincidencia[i]=palabra.charAt(i);
-					System.out.print(coincidencia[i]+" ");
-				}
-				System.out.println("Lo siento, has perdido. ¡Suerte la próxima vez!");
-			}
+			System.out.println("Lo siento, has perdido. ¡Suerte la próxima vez!");
 		}
 		
 	}
@@ -79,19 +63,12 @@ public class Principal {
 			existeLetra=false;
 			palabraEntera=false;
 			introduceUsuario=JOptionPane.showInputDialog("Introduce una letra o la palabra: ");
-			
-			if (introduceUsuario.equals(god)) {
-				jugador.setFallos(-1);
-				godMode=true;
-				JOptionPane.showMessageDialog(null, "Has activado el modo Dios");
-			}
 
 			if (introduceUsuario.length()==1) {
 				unaLetra();
 				if(existeLetra==false) {	
 					JOptionPane.showMessageDialog(null, "No es correcto, inténtalo de nuevo");
 					contadorDeFallos++;
-					Ventana.getVentana().repaint();
 				}
 			}
 			else {
@@ -99,7 +76,8 @@ public class Principal {
 					unaPalabra();
 				}
 				else {
-					cheatHint();
+					JOptionPane.showMessageDialog(null, "No es correcto, inténtalo de nuevo");
+					contadorDeFallos++;
 				}
 			}
 			for (int i=0;i<palabra.length();i++) {
@@ -108,14 +86,13 @@ public class Principal {
 				}
 			}
 			
-			if (existeLetra==false && palabraEntera==false && !introduceUsuario.equals(hint)) {
+			if (existeLetra==false && palabraEntera==false) {
 				arrayDeFallos[contArrayDeFallos]=introduceUsuario;
 				contArrayDeFallos++;
 			}
 			System.out.println("Tus fallos: ");
 			for (int i=0;i<contArrayDeFallos;i++) {
 				System.out.print(arrayDeFallos[i]+" ");
-				Ventana.getVentana().repaint();
 			}
 			System.out.println();
 			
@@ -128,7 +105,6 @@ public class Principal {
 			char charUsuario= introduceUsuario.charAt(0);
 			if(charUsuario==palabra.charAt(i)) {
 				coincidencia[i]=charUsuario;
-				Ventana.getVentana().repaint();
 				existeLetra=true;
 				for (int j=0;j<coincidencia.length;j++) {
 					System.out.print(coincidencia[j]+" ");
@@ -140,36 +116,9 @@ public class Principal {
 	
 	public static void unaPalabra() {
 		palabraEntera=true;
-		System.out.println();
 		for (int i=0;i<palabra.length();i++) {
 			coincidencia[i]=palabra.charAt(i);
-			Ventana.getVentana().repaint();
-		}
-	}
-	
-	public static void cheatHint() {
-		if (introduceUsuario.equals(hint) && hintb==false) {
-			JOptionPane.showMessageDialog(null, "Has activado una pista");
-			int num=(int) Math.round(Math.random()*palabra.length());
-			char charUsuario=palabra.charAt(num);
-			coincidencia[num]=charUsuario;
-			for (int j=0;j<coincidencia.length;j++) {
-	
-				if(coincidencia[num]==palabra.charAt(j)) {
-					coincidencia[j]=coincidencia[num];
-					Ventana.getVentana().repaint();
-				}
-				System.out.print(coincidencia[j]+" ");
-			}
-			System.out.println();
-			hintb=true;
-		}
-		else {
-			if (!introduceUsuario.equals(god)) {
-				JOptionPane.showMessageDialog(null, "No es correcto, inténtalo de nuevo");
-				contadorDeFallos++;
-				Ventana.getVentana().repaint();
-			}
+			System.out.print(coincidencia[i]+" ");
 		}
 	}
 }

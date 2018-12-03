@@ -2,6 +2,7 @@ package ahorcado;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.net.URL;
@@ -45,27 +46,68 @@ public class Ventana extends Canvas {
 	@Override
 	public void paint(Graphics g) {
 		
+		
+		//Imagen de fondo
+				g.drawImage(getImagen("ikea.jpg"), 0, 0, this);
+		
+		String palabra="";
+		String fallos="";
+		g.setFont(new Font("Console", Font.BOLD, 16));
+		g.drawString("Acierta la palabra: ", 450, 180);
+		
+		for (int i=0;i<Principal.coincidencia.length;i++) {
+			palabra+=Principal.coincidencia[i]+" ";
+		}
+		
+		for (int i=0;i<Principal.arrayDeFallos.length;i++) {
+			fallos+=Principal.arrayDeFallos[i]+" ";
+		}
+		
+		g.setFont(new Font("Console", Font.BOLD, 20));
+		g.drawString(palabra, 450, 210);
+		
+		g.setFont(new Font("Console", Font.BOLD, 15));
+		g.drawString("Fallos: "+fallos, 320, 70);
+		
+		
+		if (Principal.palabraEntera==true) {
+			g.drawString("¡Enhorabuena!", 450, 310);
+		}
+		
+		if (Principal.repararAcierto==true) {
+			g.drawString("¡Enhorabuena!", 450, 310);
+		}
+		
+		
+		if (Principal.contadorDeFallos==1 && Principal.godMode==false) {
+			g.setColor(Color.red);
+			g.fillOval(270, 120, 80, 80);
+		}
+		
+		
+		
+		
 		// Pintando la cabeza
 				g.setColor(Color.pink);
-				g.fillOval(252, 80, 120, 120);
+				g.fillOval(270, 120, 80, 80);
 				
 		//Pintando el cuerpo
 				g.setColor(Color.green);
-				g.fillRect(261, 200, 100, 120);
+				g.fillRect(270, 200, 80, 120);
 				
 		//Pintando los brazos
 				g.setColor(Color.green);
-				g.fillRect(361, 200, 30, 100);
+				g.fillRect(355, 200, 20, 100);
 				
 				g.setColor(Color.green);
-				g.fillRect(231, 200, 30, 100);
+				g.fillRect(245, 200, 20, 100);
 				
 		//Pintando las piernas
 				g.setColor(Color.blue);
-				g.fillRect(330, 320, 30, 100);
+				g.fillRect(320, 320, 30, 100);
 				
 				g.setColor(Color.blue);
-				g.fillRect(263, 320, 30, 100);
+				g.fillRect(270, 320, 30, 100);
 				
 		//Pintando la base
 				g.setColor(Color.gray);
@@ -80,16 +122,14 @@ public class Ventana extends Canvas {
 				g.fillRect(13, 30, 300, 40);
 				
 		//Pintando la cuerda
-				g.drawLine(313, 30, 313, 80);
+				g.drawLine(313, 30, 313, 120);
 				
-		//Imagen de fondo
-				g.drawImage(getImagen("tableroOca.png"), 0, 0, this);
 	}
 	
 	public BufferedImage getImagen(String nombre) {
 		URL url=null;
 		try {
-			url = getClass().getResource("/tutorialJava/capitulo4_OO/ejercicios/ejercicioExtra02_La_Oca/recursos/" + nombre);
+			url = getClass().getResource("/ahorcado/" + nombre);
 			return ImageIO.read(url);
 		} catch (Exception e) {
 			System.out.println("No se pudo cargar la imagen " + nombre +" de "+url);
