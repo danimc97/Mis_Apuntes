@@ -87,6 +87,7 @@ public class Ventana extends Canvas {
 		
 		
 		
+		
 		// Pintando la cabeza
 				g.setColor(Color.pink);
 				g.fillOval(270, 120, 80, 80);
@@ -123,6 +124,94 @@ public class Ventana extends Canvas {
 				
 		//Pintando la cuerda
 				g.drawLine(313, 30, 313, 120);
+				
+				
+		if (Principal.contadorDeFallos==1) {
+			
+			g.setColor(Color.red);
+			g.fillOval(270, 120, 80, 80);
+			
+		}
+		
+		if (Principal.contadorDeFallos==2) {
+			
+			g.setColor(Color.red);
+			g.fillOval(270, 120, 80, 80);
+					
+			g.setColor(Color.red);
+			g.fillRect(270, 200, 80, 120);
+			
+		}
+		
+		if (Principal.contadorDeFallos==3) {
+			
+			g.setColor(Color.red);
+			g.fillOval(270, 120, 80, 80);
+					
+			g.setColor(Color.red);
+			g.fillRect(270, 200, 80, 120);
+			
+			g.setColor(Color.red);
+			g.fillRect(355, 200, 20, 100);
+			
+		}
+		
+		if (Principal.contadorDeFallos==4) {
+			
+			g.setColor(Color.red);
+			g.fillOval(270, 120, 80, 80);
+					
+			g.setColor(Color.red);
+			g.fillRect(270, 200, 80, 120);
+			
+			g.setColor(Color.red);
+			g.fillRect(355, 200, 20, 100);
+			
+			g.setColor(Color.red);
+			g.fillRect(245, 200, 20, 100);
+			
+		}
+		
+		if (Principal.contadorDeFallos==5) {
+			
+			g.setColor(Color.red);
+			g.fillOval(270, 120, 80, 80);
+					
+			g.setColor(Color.red);
+			g.fillRect(270, 200, 80, 120);
+			
+			g.setColor(Color.red);
+			g.fillRect(355, 200, 20, 100);
+			
+			g.setColor(Color.red);
+			g.fillRect(245, 200, 20, 100);
+			
+			g.setColor(Color.red);
+			g.fillRect(320, 320, 30, 100);
+			
+		}
+		
+		if (Principal.contadorDeFallos==6) {
+			
+			g.setColor(Color.red);
+			g.fillOval(270, 120, 80, 80);
+					
+			g.setColor(Color.red);
+			g.fillRect(270, 200, 80, 120);
+			
+			g.setColor(Color.red);
+			g.fillRect(355, 200, 20, 100);
+			
+			g.setColor(Color.red);
+			g.fillRect(245, 200, 20, 100);
+			
+			g.setColor(Color.red);
+			g.fillRect(320, 320, 30, 100);
+			
+			g.setColor(Color.red);
+			g.fillRect(270, 320, 30, 100);
+			
+		}
 				
 	}
 	

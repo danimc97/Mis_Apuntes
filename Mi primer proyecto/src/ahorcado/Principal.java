@@ -11,7 +11,7 @@ public class Principal {
 	static String god="god";
 	static Jugador jugador=new Jugador();
 	static String introduceUsuario;
-	static String palabras[]= new String[] {"Lokii", "Thor", "Hulk", "Ironman", "Spiderman"};
+	static String palabras[]= new String[] {"Loki", "Thor", "Hulk", "Ironman", "Spiderman"};
 	static String palabra= palabras[(int) Math.round(Math.random()*(palabras.length-1))];
 	static String arrayDeFallos[]=new String[6];
 	static int contadorDeFallos=0;
@@ -26,7 +26,7 @@ public class Principal {
 	
 	public static void main(String[] args) {
 		
-		System.out.println("La palabra es: "+palabra);
+		//System.out.println("La palabra es: "+palabra);
 		for (int i=0;i<coincidencia.length;i++) {
 			coincidencia[i]='_';
 		}
@@ -90,7 +90,6 @@ public class Principal {
 				unaLetra();
 				if(existeLetra==false) {	
 					JOptionPane.showMessageDialog(null, "No es correcto, inténtalo de nuevo");
-					contadorDeFallos++;
 					Ventana.getVentana().repaint();
 				}
 			}
@@ -108,9 +107,12 @@ public class Principal {
 				}
 			}
 			
-			if (existeLetra==false && palabraEntera==false && !introduceUsuario.equals(hint)) {
+			if (existeLetra==false && palabraEntera==false && !introduceUsuario.equals(hint) && !introduceUsuario.equals(god)) {
 				arrayDeFallos[contArrayDeFallos]=introduceUsuario;
-				contArrayDeFallos++;
+				if (godMode==false) {
+					contadorDeFallos++;
+					contArrayDeFallos++;
+				}
 			}
 			System.out.println("Tus fallos: ");
 			for (int i=0;i<contArrayDeFallos;i++) {
@@ -167,7 +169,6 @@ public class Principal {
 		else {
 			if (!introduceUsuario.equals(god)) {
 				JOptionPane.showMessageDialog(null, "No es correcto, inténtalo de nuevo");
-				contadorDeFallos++;
 				Ventana.getVentana().repaint();
 			}
 		}
