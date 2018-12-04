@@ -9,9 +9,11 @@ public class Principal {
 	static char barra='_';
 	static String hint="hint";
 	static String god="god";
+	static String navidad="navidad";
 	static Jugador jugador=new Jugador();
 	static String introduceUsuario;
 	static String palabras[]= new String[] {"Loki", "Thor", "Hulk", "Ironman", "Spiderman"};
+	static String arrayNavidad[]=new String[] {"Trineo", "Regalos", "Santaclaus", "Villancicos", "Renos"};
 	static String palabra= palabras[(int) Math.round(Math.random()*(palabras.length-1))];
 	static String arrayDeFallos[]=new String[6];
 	static int contadorDeFallos=0;
@@ -79,6 +81,13 @@ public class Principal {
 			existeLetra=false;
 			palabraEntera=false;
 			introduceUsuario=JOptionPane.showInputDialog("Introduce una letra o la palabra: ");
+			
+			if(introduceUsuario.equals(navidad)) {
+				for (int i=0;i<palabras.length;i++) {
+					palabras[i]=arrayNavidad[i];
+				}
+				Ventana.getVentana().repaint();
+			}
 			
 			if (introduceUsuario.equals(god)) {
 				jugador.setFallos(-1);
