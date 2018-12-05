@@ -83,11 +83,24 @@ public class Principal {
 			palabraEntera=false;
 			introduceUsuario=JOptionPane.showInputDialog("Introduce una letra o la palabra: ");
 			
-			if(introduceUsuario.equals(navidad)) {
+			if(introduceUsuario.equals(navidad) && ponerNavidad==false) {
+				
 				for (int i=0;i<palabras.length;i++) {
 					palabras[i]=arrayNavidad[i];
 				}
+				
+				palabra= palabras[(int) Math.round(Math.random()*(palabras.length-1))];
+				
+				for (int i=0;i<coincidencia.length;i++) {
+					coincidencia[i]='_';
+				}
+				
+				for (int i=0;i<arrayDeFallos.length;i++) {
+					arrayDeFallos[i]="";
+				}
+				
 				ponerNavidad=true;
+				contadorDeFallos=0;
 				Ventana.getVentana().repaint();
 			}
 			
@@ -113,12 +126,12 @@ public class Principal {
 				}
 			}
 			for (int i=0;i<palabra.length();i++) {
-				if (barra==coincidencia[i]) {
+				if (barra==coincidencia[i] && !introduceUsuario.equals(navidad)) {
 					verificacionPalabraEntera++;
 				}
 			}
 			
-			if (existeLetra==false && palabraEntera==false && !introduceUsuario.equals(hint) && !introduceUsuario.equals(god)) {
+			if (existeLetra==false && palabraEntera==false && !introduceUsuario.equals(hint) && !introduceUsuario.equals(god) && !introduceUsuario.equals(navidad)) {
 				arrayDeFallos[contArrayDeFallos]=introduceUsuario;
 				if (godMode==false) {
 					contadorDeFallos++;
@@ -178,7 +191,7 @@ public class Principal {
 			hintb=true;
 		}
 		else {
-			if (!introduceUsuario.equals(god)) {
+			if (!introduceUsuario.equals(god) && !introduceUsuario.equals(navidad)) {
 				JOptionPane.showMessageDialog(null, "No es correcto, inténtalo de nuevo");
 				Ventana.getVentana().repaint();
 			}

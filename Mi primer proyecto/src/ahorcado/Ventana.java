@@ -223,8 +223,10 @@ public class Ventana extends Canvas {
 			//Imagen de fondo
 			g.drawImage(getImagen("Eguisheim Navidad.JPG"), 0, 0, this);
 			
+			
 			String palabra="";
 			String fallos="";
+			g.setColor(Color.red);
 			g.setFont(new Font("Console", Font.BOLD, 16));
 			g.drawString("Acierta la palabra: ", 450, 180);
 			
@@ -236,9 +238,11 @@ public class Ventana extends Canvas {
 				fallos+=Principal.arrayDeFallos[i]+" ";
 			}
 			
+			g.setColor(Color.red);
 			g.setFont(new Font("Console", Font.BOLD, 20));
 			g.drawString(palabra, 450, 210);
 			
+			g.setColor(Color.red);
 			g.setFont(new Font("Console", Font.BOLD, 15));
 			g.drawString("Fallos: "+fallos, 320, 70);
 			
@@ -266,21 +270,21 @@ public class Ventana extends Canvas {
 						g.fillOval(270, 120, 80, 80);
 						
 				//Pintando el cuerpo
-						g.setColor(Color.green);
+						g.setColor(Color.red);
 						g.fillRect(270, 200, 80, 120);
 						
 				//Pintando los brazos
-						g.setColor(Color.green);
+						g.setColor(Color.red);
 						g.fillRect(355, 200, 20, 100);
 						
-						g.setColor(Color.green);
+						g.setColor(Color.red);
 						g.fillRect(245, 200, 20, 100);
 						
 				//Pintando las piernas
-						g.setColor(Color.blue);
+						g.setColor(Color.red);
 						g.fillRect(320, 320, 30, 100);
 						
-						g.setColor(Color.blue);
+						g.setColor(Color.red);
 						g.fillRect(270, 320, 30, 100);
 						
 				//Pintando la base
@@ -298,90 +302,93 @@ public class Ventana extends Canvas {
 				//Pintando la cuerda
 						g.drawLine(313, 30, 313, 120);
 						
+				g.drawImage(getImagenGorro("gorrochico.png"), 250, 65, this);
+						
 						
 				if (Principal.contadorDeFallos==1) {
 					
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillOval(270, 120, 80, 80);
+					g.drawImage(getImagenGorro("gorrochico.png"), 250, 65, this);
 					
 				}
 				
 				if (Principal.contadorDeFallos==2) {
 					
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillOval(270, 120, 80, 80);
 							
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillRect(270, 200, 80, 120);
 					
 				}
 				
 				if (Principal.contadorDeFallos==3) {
 					
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillOval(270, 120, 80, 80);
 							
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillRect(270, 200, 80, 120);
 					
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillRect(355, 200, 20, 100);
 					
 				}
 				
 				if (Principal.contadorDeFallos==4) {
 					
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillOval(270, 120, 80, 80);
 							
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillRect(270, 200, 80, 120);
 					
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillRect(355, 200, 20, 100);
 					
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillRect(245, 200, 20, 100);
 					
 				}
 				
 				if (Principal.contadorDeFallos==5) {
 					
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillOval(270, 120, 80, 80);
 							
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillRect(270, 200, 80, 120);
 					
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillRect(355, 200, 20, 100);
 					
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillRect(245, 200, 20, 100);
 					
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillRect(320, 320, 30, 100);
 					
 				}
 				
 				if (Principal.contadorDeFallos==6) {
 					
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillOval(270, 120, 80, 80);
 							
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillRect(270, 200, 80, 120);
 					
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillRect(355, 200, 20, 100);
 					
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillRect(245, 200, 20, 100);
 					
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillRect(320, 320, 30, 100);
 					
-					g.setColor(Color.red);
+					g.setColor(Color.green);
 					g.fillRect(270, 320, 30, 100);
 					
 				}
@@ -392,6 +399,19 @@ public class Ventana extends Canvas {
 	
 	
 	public BufferedImage getImagen(String nombre) {
+		URL url=null;
+		try {
+			url = getClass().getResource("/ahorcado/" + nombre);
+			return ImageIO.read(url);
+		} catch (Exception e) {
+			System.out.println("No se pudo cargar la imagen " + nombre +" de "+url);
+			System.out.println("El error fue : "+e.getClass().getName()+" "+e.getMessage());
+			System.exit(0);
+			return null;
+		}
+	}
+	
+	public BufferedImage getImagenGorro(String nombre) {
 		URL url=null;
 		try {
 			url = getClass().getResource("/ahorcado/" + nombre);
