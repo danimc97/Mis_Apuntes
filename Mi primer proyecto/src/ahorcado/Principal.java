@@ -24,6 +24,7 @@ public class Principal {
 	static boolean hintb=false;
 	static boolean godMode=false;
 	static boolean repararAcierto=false;
+	static boolean ponerNavidad=false;
 	static char coincidencia[]= new char [palabra.length()];
 	
 	public static void main(String[] args) {
@@ -86,6 +87,7 @@ public class Principal {
 				for (int i=0;i<palabras.length;i++) {
 					palabras[i]=arrayNavidad[i];
 				}
+				ponerNavidad=true;
 				Ventana.getVentana().repaint();
 			}
 			
