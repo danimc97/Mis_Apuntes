@@ -31,33 +31,33 @@ public class Principal {
 		
 		//System.out.println("La palabra es: "+palabra);
 		for (int i=0;i<coincidencia.length;i++) {
-			coincidencia[i]='_';
+			coincidencia[i]='_';					//Mostramos los guiones bajos en el array de coincidencias.
 		}
 		
 		for (int i=0;i<arrayDeFallos.length;i++) {
-			arrayDeFallos[i]="";
+			arrayDeFallos[i]="";					//Iniciamos el array de los fallos para almacenarlos en un futuro
 		}
 		
-		Ventana ventana=new Ventana();
+		Ventana ventana=new Ventana();				//Llamamos a la ventana para iniciar el entorno gráfico
 		
 		System.out.println();
 		
-		comprobarAciertoFallo();
+		comprobarAciertoFallo();					//Llamamos al método donde comprobamos la palabra
 		
 		
 		if (palabraEntera==true) {
-			System.out.println("¡Enhorabuena! Has acertado la palabra");
+			System.out.println("¡Enhorabuena! Has acertado la palabra");	//Comprobamos si la palabra está entera
 			ventana.getVentana().repaint();
 		}
 		else {
 			if(verificacionPalabraEntera==0) {
 				repararAcierto=true;
-				System.out.println("¡Enhorabuena! Has acertado la palabra");
+				System.out.println("¡Enhorabuena! Has acertado la palabra");	//Comprobamos si ya no hay más guiones bajos
 				ventana.getVentana().repaint();
 			}
 			else {
 				for (int i=0;i<palabra.length();i++) {
-					coincidencia[i]=palabra.charAt(i);
+					coincidencia[i]=palabra.charAt(i);							//Mostramos la palabra entera cuando el jugador pierda
 					System.out.print(coincidencia[i]+" ");
 				}
 				System.out.println("Lo siento, has perdido. ¡Suerte la próxima vez!");
@@ -85,7 +85,7 @@ public class Principal {
 			
 			if(introduceUsuario.equals(navidad) && ponerNavidad==false) {
 				
-				for (int i=0;i<palabras.length;i++) {
+				for (int i=0;i<palabras.length;i++) {							//Iniciamos el modo navidad
 					palabras[i]=arrayNavidad[i];
 				}
 				
@@ -106,41 +106,41 @@ public class Principal {
 			
 			if (introduceUsuario.equals(god)) {
 				jugador.setFallos(-1);
-				godMode=true;
+				godMode=true;														//Iniciamos el modo dios
 				JOptionPane.showMessageDialog(null, "Has activado el modo Dios");
 			}
 
-			if (introduceUsuario.length()==1) {
-				unaLetra();
-				if(existeLetra==false) {	
+			if (introduceUsuario.length()==1) {				//Comprobamos si lo que introduce el usuario es una letra solamente
+				unaLetra();									//Llamamos al metodo
+				if(existeLetra==false) {
 					JOptionPane.showMessageDialog(null, "No es correcto, inténtalo de nuevo");
 					Ventana.getVentana().repaint();
 				}
 			}
 			else {
-				if (introduceUsuario.equalsIgnoreCase(palabra)){
-					unaPalabra();
+				if (introduceUsuario.equalsIgnoreCase(palabra)){	//Comprobamos si lo que ha introducido el usuario es igual a la palabra
+					unaPalabra();									//Llamamos al método
 				}
 				else {
-					cheatHint();
+					cheatHint();									//Llamamos al método por si la palabra introducida es igual a hint
 				}
 			}
 			for (int i=0;i<palabra.length();i++) {
-				if (barra==coincidencia[i] && !introduceUsuario.equals(navidad)) {
+				if (barra==coincidencia[i] && !introduceUsuario.equals(navidad)) {	//Aquí comprobamos los guiones en blanco que quedan en el array de coincidencias
 					verificacionPalabraEntera++;
 				}
 			}
 			
 			if (existeLetra==false && palabraEntera==false && !introduceUsuario.equals(hint) && !introduceUsuario.equals(god) && !introduceUsuario.equals(navidad)) {
 				arrayDeFallos[contArrayDeFallos]=introduceUsuario;
-				if (godMode==false) {
+				if (godMode==false) {								//Aquí metemos los fallos en el array y añadimos un fallo al contador
 					contadorDeFallos++;
 					contArrayDeFallos++;
 				}
 			}
 			System.out.println("Tus fallos: ");
 			for (int i=0;i<contArrayDeFallos;i++) {
-				System.out.print(arrayDeFallos[i]+" ");
+				System.out.print(arrayDeFallos[i]+" ");				//Imprimimos los fallos que tiene el usuario por pantalla.
 				Ventana.getVentana().repaint();
 			}
 			System.out.println();
@@ -149,7 +149,7 @@ public class Principal {
 		
 	}
 	
-	public static void unaLetra() {
+	public static void unaLetra() {						//Si el usuario introduce una letra
 		for (int i=0;i<palabra.length();i++) {
 			char charUsuario= introduceUsuario.charAt(0);
 			if(charUsuario==palabra.charAt(i)) {
@@ -164,7 +164,7 @@ public class Principal {
 		}
 	}
 	
-	public static void unaPalabra() {
+	public static void unaPalabra() {		//Si el usuario introduce una palabra
 		palabraEntera=true;
 		System.out.println();
 		for (int i=0;i<palabra.length();i++) {
@@ -173,10 +173,10 @@ public class Principal {
 		}
 	}
 	
-	public static void cheatHint() {
+	public static void cheatHint() {										//Si el usuario introduce "hint"
 		if (introduceUsuario.equals(hint) && hintb==false) {
 			JOptionPane.showMessageDialog(null, "Has activado una pista");
-			int num=(int) Math.round(Math.random()*palabra.length());
+			int num=(int) Math.round(Math.random()*palabra.length());		//Generamos un numero aleatorio
 			char charUsuario=palabra.charAt(num);
 			coincidencia[num]=charUsuario;
 			for (int j=0;j<coincidencia.length;j++) {

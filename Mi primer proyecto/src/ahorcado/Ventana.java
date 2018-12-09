@@ -18,7 +18,7 @@ public class Ventana extends Canvas {
 	
 	public static Ventana ventana = null;
 	
-	public Ventana () {
+	public Ventana () {  //Generamos la ventana
 		// La clase JFrame nos permite mostrar una ventana en pantalla
 		JFrame ventana = new JFrame("El ahorcado");
 		// Establecemos las dimensiones que queremos que tenga
