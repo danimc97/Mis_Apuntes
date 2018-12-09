@@ -215,6 +215,9 @@ public class Ventana extends Canvas {
 				g.setColor(Color.red);
 				g.fillRect(270, 320, 30, 100);
 				
+				g.setColor(Color.black);
+				g.drawString("Perdiste", 450, 310);
+				
 			}
 		}
 		
