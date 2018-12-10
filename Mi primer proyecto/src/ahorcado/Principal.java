@@ -34,6 +34,8 @@ public class Principal {
 			coincidencia[i]='_';					//Mostramos los guiones bajos en el array de coincidencias.
 		}
 		
+		System.out.println(palabra);
+		
 		for (int i=0;i<arrayDeFallos.length;i++) {
 			arrayDeFallos[i]="";					//Iniciamos el array de los fallos para almacenarlos en un futuro
 		}
@@ -44,26 +46,7 @@ public class Principal {
 		
 		comprobarAciertoFallo();					//Llamamos al método donde comprobamos la palabra
 		
-		
-		if (palabraEntera==true) {
-			System.out.println("¡Enhorabuena! Has acertado la palabra");	//Comprobamos si la palabra está entera
-			ventana.getVentana().repaint();
-		}
-		else {
-			if(verificacionPalabraEntera==0) {
-				repararAcierto=true;
-				System.out.println("¡Enhorabuena! Has acertado la palabra");	//Comprobamos si ya no hay más guiones bajos
-				ventana.getVentana().repaint();
-			}
-			else {
-				for (int i=0;i<palabra.length();i++) {
-					coincidencia[i]=palabra.charAt(i);							//Mostramos la palabra entera cuando el jugador pierda
-					System.out.print(coincidencia[i]+" ");
-				}
-				System.out.println("Lo siento, has perdido. ¡Suerte la próxima vez!");
-			}
-		}
-		
+		muestraResultadoFinal();					//Llamamos al método para mostrar el resultado final
 	}
 	
 	
@@ -83,7 +66,7 @@ public class Principal {
 			palabraEntera=false;
 			introduceUsuario=JOptionPane.showInputDialog("Introduce una letra o la palabra: ");
 			
-			if(introduceUsuario.equals(navidad) && ponerNavidad==false) {
+			if(introduceUsuario.equalsIgnoreCase(navidad) && ponerNavidad==false) {
 				
 				for (int i=0;i<palabras.length;i++) {							//Iniciamos el modo navidad
 					palabras[i]=arrayNavidad[i];
@@ -104,7 +87,7 @@ public class Principal {
 				Ventana.getVentana().repaint();
 			}
 			
-			if (introduceUsuario.equals(god)) {
+			if (introduceUsuario.equalsIgnoreCase(god) && godMode==false) {
 				jugador.setFallos(-1);
 				godMode=true;														//Iniciamos el modo dios
 				JOptionPane.showMessageDialog(null, "Has activado el modo Dios");
@@ -126,12 +109,12 @@ public class Principal {
 				}
 			}
 			for (int i=0;i<palabra.length();i++) {
-				if (barra==coincidencia[i] && !introduceUsuario.equals(navidad)) {	//Aquí comprobamos los guiones en blanco que quedan en el array de coincidencias
+				if (barra==coincidencia[i] && !introduceUsuario.equalsIgnoreCase(navidad)) {	//Aquí comprobamos los guiones en blanco que quedan en el array de coincidencias
 					verificacionPalabraEntera++;
 				}
 			}
 			
-			if (existeLetra==false && palabraEntera==false && !introduceUsuario.equals(hint) && !introduceUsuario.equals(god) && !introduceUsuario.equals(navidad)) {
+			if (existeLetra==false && palabraEntera==false && !introduceUsuario.equalsIgnoreCase(navidad)) {
 				arrayDeFallos[contArrayDeFallos]=introduceUsuario;
 				if (godMode==false) {								//Aquí metemos los fallos en el array y añadimos un fallo al contador
 					contadorDeFallos++;
@@ -174,7 +157,7 @@ public class Principal {
 	}
 	
 	public static void cheatHint() {										//Si el usuario introduce "hint"
-		if (introduceUsuario.equals(hint) && hintb==false) {
+		if (introduceUsuario.equalsIgnoreCase(hint) && hintb==false) {
 			JOptionPane.showMessageDialog(null, "Has activado una pista");
 			int num=(int) Math.round(Math.random()*palabra.length());		//Generamos un numero aleatorio
 			char charUsuario=palabra.charAt(num);
@@ -191,10 +174,37 @@ public class Principal {
 			hintb=true;
 		}
 		else {
-			if (!introduceUsuario.equals(god) && !introduceUsuario.equals(navidad)) {
+			if (!introduceUsuario.equalsIgnoreCase(god) && !introduceUsuario.equalsIgnoreCase(navidad)) {
 				JOptionPane.showMessageDialog(null, "No es correcto, inténtalo de nuevo");
 				Ventana.getVentana().repaint();
 			}
 		}
 	}
+	
+	
+	public static void muestraResultadoFinal() {
+		
+		Ventana ventana=new Ventana();
+		
+		if (palabraEntera==true) {
+			System.out.println("¡Enhorabuena! Has acertado la palabra");	//Comprobamos si la palabra está entera
+			ventana.getVentana().repaint();
+		}
+		else {
+			if(verificacionPalabraEntera==0) {
+				repararAcierto=true;
+				System.out.println("¡Enhorabuena! Has acertado la palabra");	//Comprobamos si ya no hay más guiones bajos
+				ventana.getVentana().repaint();
+			}
+			else {
+				for (int i=0;i<palabra.length();i++) {
+					coincidencia[i]=palabra.charAt(i);							//Mostramos la palabra entera cuando el jugador pierda
+					System.out.print(coincidencia[i]+" ");
+				}
+				System.out.println("Lo siento, has perdido. ¡Suerte la próxima vez!");
+			}
+		}
+		
+	}
+	
 }

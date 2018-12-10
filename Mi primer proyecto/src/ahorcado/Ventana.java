@@ -88,46 +88,42 @@ public class Ventana extends Canvas {
 			g.fillOval(270, 120, 80, 80);
 		}
 		
-		
-		
-		
-		
-			// Pintando la cabeza
-					g.setColor(Color.pink);
-					g.fillOval(270, 120, 80, 80);
-					
-			//Pintando el cuerpo
-					g.setColor(Color.green);
-					g.fillRect(270, 200, 80, 120);
-					
-			//Pintando los brazos
-					g.setColor(Color.green);
-					g.fillRect(355, 200, 20, 100);
-					
-					g.setColor(Color.green);
-					g.fillRect(245, 200, 20, 100);
-					
-			//Pintando las piernas
-					g.setColor(Color.blue);
-					g.fillRect(320, 320, 30, 100);
-					
-					g.setColor(Color.blue);
-					g.fillRect(270, 320, 30, 100);
-					
-			//Pintando la base
-					g.setColor(Color.gray);
-					g.fillRect(11, 380, 150, 30);
-					
-			//Pintando el tronco
-					g.setColor(Color.gray);
-					g.fillRect(11, 30, 40, 350);
-					
-			//Pintando el techo
-					g.setColor(Color.gray);
-					g.fillRect(13, 30, 300, 40);
-					
-			//Pintando la cuerda
-					g.drawLine(313, 30, 313, 120);
+	// Pintando la cabeza
+			g.setColor(Color.pink);
+			g.fillOval(270, 120, 80, 80);
+			
+	//Pintando el cuerpo
+			g.setColor(Color.green);
+			g.fillRect(270, 200, 80, 120);
+			
+	//Pintando los brazos
+			g.setColor(Color.green);
+			g.fillRect(355, 200, 20, 100);
+			
+			g.setColor(Color.green);
+			g.fillRect(245, 200, 20, 100);
+			
+	//Pintando las piernas
+			g.setColor(Color.blue);
+			g.fillRect(320, 320, 30, 100);
+			
+			g.setColor(Color.blue);
+			g.fillRect(270, 320, 30, 100);
+			
+	//Pintando la base
+			g.setColor(Color.gray);
+			g.fillRect(11, 380, 150, 30);
+			
+	//Pintando el tronco
+			g.setColor(Color.gray);
+			g.fillRect(11, 30, 40, 350);
+			
+	//Pintando el techo
+			g.setColor(Color.gray);
+			g.fillRect(13, 30, 300, 40);
+			
+	//Pintando la cuerda
+			g.drawLine(313, 30, 313, 120);
 					
 					
 			if (Principal.contadorDeFallos==1) {
@@ -264,138 +260,133 @@ public class Ventana extends Canvas {
 				g.fillOval(270, 120, 80, 80);
 			}
 			
-			
-			
-			
-			
-				// Pintando la cabeza
-						g.setColor(Color.pink);
-						g.fillOval(270, 120, 80, 80);
-						
-				//Pintando el cuerpo
-						g.setColor(Color.red);
-						g.fillRect(270, 200, 80, 120);
-						
-				//Pintando los brazos
-						g.setColor(Color.red);
-						g.fillRect(355, 200, 20, 100);
-						
-						g.setColor(Color.red);
-						g.fillRect(245, 200, 20, 100);
-						
-				//Pintando las piernas
-						g.setColor(Color.red);
-						g.fillRect(320, 320, 30, 100);
-						
-						g.setColor(Color.red);
-						g.fillRect(270, 320, 30, 100);
-						
-				//Pintando la base
-						g.setColor(Color.gray);
-						g.fillRect(11, 380, 150, 30);
-						
-				//Pintando el tronco
-						g.setColor(Color.gray);
-						g.fillRect(11, 30, 40, 350);
-						
-				//Pintando el techo
-						g.setColor(Color.gray);
-						g.fillRect(13, 30, 300, 40);
-						
-				//Pintando la cuerda
-						g.drawLine(313, 30, 313, 120);
-						
-				g.drawImage(getImagenGorro("gorrochico.png"), 250, 65, this);
-						
-						
-				if (Principal.contadorDeFallos==1) {
-					
-					g.setColor(Color.green);
+			// Pintando la cabeza
+					g.setColor(Color.pink);
 					g.fillOval(270, 120, 80, 80);
-					g.drawImage(getImagenGorro("gorrochico.png"), 250, 65, this);
 					
-				}
-				
-				if (Principal.contadorDeFallos==2) {
-					
-					g.setColor(Color.green);
-					g.fillOval(270, 120, 80, 80);
-							
-					g.setColor(Color.green);
+			//Pintando el cuerpo
+					g.setColor(Color.red);
 					g.fillRect(270, 200, 80, 120);
 					
-				}
-				
-				if (Principal.contadorDeFallos==3) {
-					
-					g.setColor(Color.green);
-					g.fillOval(270, 120, 80, 80);
-							
-					g.setColor(Color.green);
-					g.fillRect(270, 200, 80, 120);
-					
-					g.setColor(Color.green);
+			//Pintando los brazos
+					g.setColor(Color.red);
 					g.fillRect(355, 200, 20, 100);
 					
-				}
-				
-				if (Principal.contadorDeFallos==4) {
-					
-					g.setColor(Color.green);
-					g.fillOval(270, 120, 80, 80);
-							
-					g.setColor(Color.green);
-					g.fillRect(270, 200, 80, 120);
-					
-					g.setColor(Color.green);
-					g.fillRect(355, 200, 20, 100);
-					
-					g.setColor(Color.green);
+					g.setColor(Color.red);
 					g.fillRect(245, 200, 20, 100);
 					
-				}
-				
-				if (Principal.contadorDeFallos==5) {
-					
-					g.setColor(Color.green);
-					g.fillOval(270, 120, 80, 80);
-							
-					g.setColor(Color.green);
-					g.fillRect(270, 200, 80, 120);
-					
-					g.setColor(Color.green);
-					g.fillRect(355, 200, 20, 100);
-					
-					g.setColor(Color.green);
-					g.fillRect(245, 200, 20, 100);
-					
-					g.setColor(Color.green);
+			//Pintando las piernas
+					g.setColor(Color.red);
 					g.fillRect(320, 320, 30, 100);
 					
-				}
-				
-				if (Principal.contadorDeFallos==6) {
-					
-					g.setColor(Color.green);
-					g.fillOval(270, 120, 80, 80);
-							
-					g.setColor(Color.green);
-					g.fillRect(270, 200, 80, 120);
-					
-					g.setColor(Color.green);
-					g.fillRect(355, 200, 20, 100);
-					
-					g.setColor(Color.green);
-					g.fillRect(245, 200, 20, 100);
-					
-					g.setColor(Color.green);
-					g.fillRect(320, 320, 30, 100);
-					
-					g.setColor(Color.green);
+					g.setColor(Color.red);
 					g.fillRect(270, 320, 30, 100);
 					
-				}
+			//Pintando la base
+					g.setColor(Color.gray);
+					g.fillRect(11, 380, 150, 30);
+					
+			//Pintando el tronco
+					g.setColor(Color.gray);
+					g.fillRect(11, 30, 40, 350);
+					
+			//Pintando el techo
+					g.setColor(Color.gray);
+					g.fillRect(13, 30, 300, 40);
+					
+			//Pintando la cuerda
+					g.drawLine(313, 30, 313, 120);
+					
+			g.drawImage(getImagenGorro("gorrochico.png"), 250, 65, this);
+					
+					
+			if (Principal.contadorDeFallos==1) {
+				
+				g.setColor(Color.green);
+				g.fillOval(270, 120, 80, 80);
+				g.drawImage(getImagenGorro("gorrochico.png"), 250, 65, this);
+				
+			}
 			
+			if (Principal.contadorDeFallos==2) {
+				
+				g.setColor(Color.green);
+				g.fillOval(270, 120, 80, 80);
+						
+				g.setColor(Color.green);
+				g.fillRect(270, 200, 80, 120);
+				
+			}
+			
+			if (Principal.contadorDeFallos==3) {
+				
+				g.setColor(Color.green);
+				g.fillOval(270, 120, 80, 80);
+						
+				g.setColor(Color.green);
+				g.fillRect(270, 200, 80, 120);
+				
+				g.setColor(Color.green);
+				g.fillRect(355, 200, 20, 100);
+				
+			}
+			
+			if (Principal.contadorDeFallos==4) {
+				
+				g.setColor(Color.green);
+				g.fillOval(270, 120, 80, 80);
+						
+				g.setColor(Color.green);
+				g.fillRect(270, 200, 80, 120);
+				
+				g.setColor(Color.green);
+				g.fillRect(355, 200, 20, 100);
+				
+				g.setColor(Color.green);
+				g.fillRect(245, 200, 20, 100);
+				
+			}
+			
+			if (Principal.contadorDeFallos==5) {
+				
+				g.setColor(Color.green);
+				g.fillOval(270, 120, 80, 80);
+						
+				g.setColor(Color.green);
+				g.fillRect(270, 200, 80, 120);
+				
+				g.setColor(Color.green);
+				g.fillRect(355, 200, 20, 100);
+				
+				g.setColor(Color.green);
+				g.fillRect(245, 200, 20, 100);
+				
+				g.setColor(Color.green);
+				g.fillRect(320, 320, 30, 100);
+				
+			}
+			
+			if (Principal.contadorDeFallos==6) {
+				
+				g.setColor(Color.green);
+				g.fillOval(270, 120, 80, 80);
+						
+				g.setColor(Color.green);
+				g.fillRect(270, 200, 80, 120);
+				
+				g.setColor(Color.green);
+				g.fillRect(355, 200, 20, 100);
+				
+				g.setColor(Color.green);
+				g.fillRect(245, 200, 20, 100);
+				
+				g.setColor(Color.green);
+				g.fillRect(320, 320, 30, 100);
+				
+				g.setColor(Color.green);
+				g.fillRect(270, 320, 30, 100);
+				
+			}
 		}
 	}
 	
