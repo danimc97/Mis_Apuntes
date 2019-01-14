@@ -73,7 +73,7 @@ public class ExamenPrueba {
 		int area= (base*altura)/2;
 		
 		return area;
-		
+		 
 	}
 
 }
