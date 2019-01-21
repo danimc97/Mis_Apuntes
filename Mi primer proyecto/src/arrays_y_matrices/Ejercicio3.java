@@ -9,6 +9,7 @@ public class Ejercicio3 {
 		int numeros=0;
 		int numero;
 		int parteD;
+		float numero2;
 		double array[]=new double[20];
 		
 		for (int i=0;i<array.length;i++) {
@@ -23,8 +24,14 @@ public class Ejercicio3 {
 			
 			numero=(int) array[i];
 			
+			numero2=(float) (array[i]-numero)*100;
+			
+			if (numero2<50) {
+				numeros++;
+			}
+			
 		}
-
+		System.out.println("La cantidad de numeros es "+numeros);
 	}
 
 }
