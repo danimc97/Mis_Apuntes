@@ -12,17 +12,30 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+
+
+
+
 
 
 public class Arkanoid extends Canvas implements Stage {
@@ -30,11 +43,11 @@ public class Arkanoid extends Canvas implements Stage {
 	private BufferStrategy strategy;
 	private long usedTime;
 	
-	private SpriteCache spriteCache;
-	private ArrayList objeto; 
+	private SpriteCache spriteCache=new SpriteCache();
+	private List<ObjetosEnPantalla>objeto = new ArrayList<ObjetosEnPantalla>();
+	private Nave nave=new Nave(this);
 	
 	public Arkanoid() {
-		spriteCache = new SpriteCache();
 
 		JFrame ventana = new JFrame("Invaders");
 		JPanel panel = (JPanel)ventana.getContentPane();
@@ -53,13 +66,27 @@ public class Arkanoid extends Canvas implements Stage {
 		createBufferStrategy(2);
 		strategy = getBufferStrategy();
 		requestFocus();
+		this.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				nave.keyReleased(e);
+			}
+			
+			public void keyPressed(KeyEvent e) {
+				nave.keyPressed(e);
+			}
+		});
+		this.addMouseMotionListener(new MouseAdapter() {
+			public void mouseMoved(MouseEvent e) {
+				nave.MouseMoved(e);
+			}
+		});
+		
 	}
 	
 	public void initWorld() {
-	    objeto = new ArrayList();
 	   
 	      Pelota m = new Pelota(this);
-	      Nave nave= new Nave(this);
+//	      Nave nave= new Nave(this);
 	      	m.setX(60);
 		    m.setY(40);
 		    m.setVy(3);
@@ -68,14 +95,83 @@ public class Arkanoid extends Canvas implements Stage {
 		    nave.setY(120);
 	      objeto.add(m);
 	      objeto.add(nave);
+	      nave.setX(Stage.WIDTH/2);
+	      nave.setY(Stage.HEIGHT - 2*nave.getHeight());
+	      
+	   
+	      for (int i = 0; i < 20; i++){
+	        Ladrillo ladrillo = new Ladrillo(this);
+	        ladrillo.setSpriteName("ladrillo-amarillo.jpg");
+	        ladrillo.setWidth(i+=1);
+	        ladrillo.setX(30*i);
+	  	    ladrillo.setY(20);
+	        objeto.add(ladrillo);
+	      }
+	      
+	      for (int i = 0; i < 20; i++){
+	        Ladrillo ladrillo = new Ladrillo(this);
+	        ladrillo.setSpriteName("ladrillo-azul.jpg");
+	        ladrillo.setWidth(i+=1);
+	        ladrillo.setX(30*i);
+	  	    ladrillo.setY(42);
+	        objeto.add(ladrillo);
+		  }
+	      
+	      for (int i = 0; i < 20; i++){
+	        Ladrillo ladrillo = new Ladrillo(this);
+	        ladrillo.setSpriteName("ladrillo-rojo.jpg");
+	        ladrillo.setWidth(i+=1);
+	        ladrillo.setX(30*i);
+	  	    ladrillo.setY(64);
+	        objeto.add(ladrillo);
+		  }
+	      
+	      for (int i = 0; i < 20; i++){
+	        Ladrillo ladrillo = new Ladrillo(this);
+	        ladrillo.setSpriteName("ladrillo-verde.jpg");
+	        ladrillo.setWidth(i+=1);
+	        ladrillo.setX(30*i);
+	  	    ladrillo.setY(86);
+	        objeto.add(ladrillo);
+		  }
+	      
 	}
 	
 	public void updateWorld() {
-		for (int i = 0; i < objeto.size(); i++) {
+		
+		int i=0;
+		
+		for (ObjetosEnPantalla objetos : objeto) {
+			objetos.act();
+		}
+		
+		while ( i < objeto.size()) {
 			ObjetosEnPantalla m = (ObjetosEnPantalla)objeto.get(i);
-			m.act();
-			ObjetosEnPantalla nave = (ObjetosEnPantalla)objeto.get(i);
-			nave.act();
+			if (m.isMarkedForRemoval()) {
+				objeto.remove(i);
+			} else {
+				m.act();
+				i++;
+			}
+		}
+		
+	}
+	
+	public void checkCollisions() {
+		Rectangle playerBounds = nave.getBounds();
+		for (int i = 0; i < objeto.size(); i++) {
+			ObjetosEnPantalla a1 = (ObjetosEnPantalla)objeto.get(i);
+			Rectangle r1 = new Rectangle(a1.getX(), a1.getY(), a1.getWidth(), a1.getHeight());
+			System.out.println("x: " + a1.getX() + " y: " + a1.getY() + " w: " + a1.getWidth() + " h: " + a1.getHeight() + " a1: " + a1);
+			
+		  for (int j = i+1; j < objeto.size(); j++) {
+		  	ObjetosEnPantalla a2 = (ObjetosEnPantalla)objeto.get(j);
+		  	Rectangle r2 =  new Rectangle(a2.getX(), a2.getY(), a2.getWidth(), a2.getHeight());
+		  	if (r1.intersects(r2)) {
+		  		a1.collision(a2);
+		  		a2.collision(a1);
+		  	}
+		  }
 		}
 	}
 	
@@ -85,9 +181,8 @@ public class Arkanoid extends Canvas implements Stage {
 		g.setColor(Color.white);
 		g.fillRect(0,0,getWidth(),getHeight());
 		g.drawImage(getImagen("fondo-arkanoid.jpg1.png"), 0, 0, this);
-		for (int i = 0; i < objeto.size(); i++) {
-			ObjetosEnPantalla m = (ObjetosEnPantalla)objeto.get(i);
-			m.paint(g);
+		for (ObjetosEnPantalla objetos : objeto) {
+			objetos.paint(g);
 		}
 		
 		g.setColor(Color.white);
@@ -97,6 +192,11 @@ public class Arkanoid extends Canvas implements Stage {
 	  	g.drawString("--- fps",0,Stage.HEIGHT-50);
 		strategy.show();
 	}
+	
+	public SpriteCache getSpriteCache() {
+		return spriteCache;
+	}
+
 	
 	public BufferedImage getImagen(String nombre) {
 		URL url=null;
@@ -111,9 +211,9 @@ public class Arkanoid extends Canvas implements Stage {
 		}
 	}
 	
-	public SpriteCache getSpriteCache() {
+	/*public SpriteCache getSpriteCache() {
 		return spriteCache;
-	}
+	}*/
 	
 	public void game() {
 		usedTime=1000;
@@ -121,6 +221,7 @@ public class Arkanoid extends Canvas implements Stage {
 		while (isVisible()) {
 			long startTime = System.currentTimeMillis();
 			updateWorld();
+			checkCollisions();
 			paintWorld();
 			usedTime = System.currentTimeMillis()-startTime;
 			try { 

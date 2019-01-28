@@ -9,6 +9,7 @@
 package arkanoid;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class ObjetosEnPantalla {
@@ -17,6 +18,26 @@ public class ObjetosEnPantalla {
 	protected String spriteName;
 	protected Stage stage;
 	protected SpriteCache spriteCache;
+	protected boolean markedForRemoval;
+	
+	
+	public void remove() {
+		markedForRemoval= true;
+	}
+	
+	public boolean isMarkedForRemoval() {
+		
+		return markedForRemoval;
+	}
+	
+	 public Rectangle getBounds() {
+         return new Rectangle(x,y,width,height);
+       }
+       
+	 
+       public void collision(ObjetosEnPantalla a){
+         
+       }
 	
 	public ObjetosEnPantalla(Stage stage) {
 		this.stage = stage;
@@ -47,4 +68,6 @@ public class ObjetosEnPantalla {
 	public void setWidth(int i) {	width = i;	}
 
 	public void act() { }
+
+	
 }

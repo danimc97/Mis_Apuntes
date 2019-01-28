@@ -17,6 +17,15 @@ public class Pelota extends ObjetosEnPantalla {
 		setSpriteName("pelota-arkanoid1.png");
 	}
 	
+	public void collision(ObjetosEnPantalla a) {
+        if (a instanceof Ladrillo) {
+        	vy=-vy;
+        }
+        if (a instanceof Nave) {
+        	vy=-vy;
+        }
+     }
+	
 	public void act() {
 		x+=vx;
 		if (x < 0 || x > Stage.WIDTH-28)
