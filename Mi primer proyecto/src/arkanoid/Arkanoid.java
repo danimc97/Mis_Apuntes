@@ -162,7 +162,7 @@ public class Arkanoid extends Canvas implements Stage {
 		for (int i = 0; i < objeto.size(); i++) {
 			ObjetosEnPantalla a1 = (ObjetosEnPantalla)objeto.get(i);
 			Rectangle r1 = new Rectangle(a1.getX(), a1.getY(), a1.getWidth(), a1.getHeight());
-			System.out.println("x: " + a1.getX() + " y: " + a1.getY() + " w: " + a1.getWidth() + " h: " + a1.getHeight() + " a1: " + a1);
+			//System.out.println("x: " + a1.getX() + " y: " + a1.getY() + " w: " + a1.getWidth() + " h: " + a1.getHeight() + " a1: " + a1);
 			
 		  for (int j = i+1; j < objeto.size(); j++) {
 		  	ObjetosEnPantalla a2 = (ObjetosEnPantalla)objeto.get(j);

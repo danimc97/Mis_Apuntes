@@ -20,6 +20,7 @@ public class Pelota extends ObjetosEnPantalla {
 	public void collision(ObjetosEnPantalla a) {
         if (a instanceof Ladrillo) {
         	vy=-vy;
+        	vx=-vx;
         }
         if (a instanceof Nave) {
         	vy=-vy;
