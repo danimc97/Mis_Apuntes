@@ -19,14 +19,11 @@ public class Nave extends ObjetosEnPantalla {
 	
 	public void act() {
 		super.act();
-		
-		if(this.right || this.left) {
 			x+=vx;
 			if (x < 0)
 			  x=0;
 			if (x > Stage.WIDTH-getWidth())
-				x=Stage.WIDTH-getWidth();
-		}
+				x=Stage.WIDTH-getWidth()-10;
 	}
 		
 
@@ -56,7 +53,7 @@ public class Nave extends ObjetosEnPantalla {
 	  }
 	  
 	  public void MouseMoved(MouseEvent e) {
-		  this.x=e.getX()-50;
+		  this.x=e.getX()-this.getWidth()/2;
 	  }
 
 }

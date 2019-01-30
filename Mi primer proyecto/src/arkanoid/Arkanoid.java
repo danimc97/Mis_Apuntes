@@ -87,8 +87,8 @@ public class Arkanoid extends Canvas implements Stage {
 	   
 	      Pelota m = new Pelota(this);
 //	      Nave nave= new Nave(this);
-	      	m.setX(60);
-		    m.setY(40);
+	      	m.setX(300);
+		    m.setY(400);
 		    m.setVy(3);
 		    m.setVx(3);
 		    nave.setX(120);
@@ -99,38 +99,34 @@ public class Arkanoid extends Canvas implements Stage {
 	      nave.setY(Stage.HEIGHT - 2*nave.getHeight());
 	      
 	   
-	      for (int i = 0; i < 20; i++){
+	      for (int i = 0; i < 10; i++){
 	        Ladrillo ladrillo = new Ladrillo(this);
 	        ladrillo.setSpriteName("ladrillo-amarillo.jpg");
-	        ladrillo.setWidth(i+=1);
-	        ladrillo.setX(30*i);
+	        ladrillo.setX(20+i*61);
 	  	    ladrillo.setY(20);
 	        objeto.add(ladrillo);
 	      }
 	      
-	      for (int i = 0; i < 20; i++){
+	      for (int i = 0; i < 10; i++){
 	        Ladrillo ladrillo = new Ladrillo(this);
 	        ladrillo.setSpriteName("ladrillo-azul.jpg");
-	        ladrillo.setWidth(i+=1);
-	        ladrillo.setX(30*i);
+	        ladrillo.setX(20+i*61);
 	  	    ladrillo.setY(42);
 	        objeto.add(ladrillo);
 		  }
 	      
-	      for (int i = 0; i < 20; i++){
+	      for (int i = 0; i < 10; i++){
 	        Ladrillo ladrillo = new Ladrillo(this);
 	        ladrillo.setSpriteName("ladrillo-rojo.jpg");
-	        ladrillo.setWidth(i+=1);
-	        ladrillo.setX(30*i);
+	        ladrillo.setX(20+i*61);
 	  	    ladrillo.setY(64);
 	        objeto.add(ladrillo);
 		  }
 	      
-	      for (int i = 0; i < 20; i++){
+	      for (int i = 0; i < 10; i++){
 	        Ladrillo ladrillo = new Ladrillo(this);
 	        ladrillo.setSpriteName("ladrillo-verde.jpg");
-	        ladrillo.setWidth(i+=1);
-	        ladrillo.setX(30*i);
+	        ladrillo.setX(20+i*61);
 	  	    ladrillo.setY(86);
 	        objeto.add(ladrillo);
 		  }
