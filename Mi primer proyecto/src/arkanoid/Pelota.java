@@ -14,7 +14,7 @@ public class Pelota extends ObjetosEnPantalla {
 	
 	public Pelota(Stage stage) {
 		super(stage);
-		setSpriteName("pelota-arkanoid1.png");
+		setSpriteName("pelota-regreso1.png");
 	}
 	
 	public void collision(ObjetosEnPantalla a) {

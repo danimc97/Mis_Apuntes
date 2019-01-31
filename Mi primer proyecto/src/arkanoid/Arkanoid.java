@@ -176,7 +176,7 @@ public class Arkanoid extends Canvas implements Stage {
 		Graphics2D g = (Graphics2D)strategy.getDrawGraphics();
 		g.setColor(Color.white);
 		g.fillRect(0,0,getWidth(),getHeight());
-		g.drawImage(getImagen("fondo-arkanoid.jpg1.png"), 0, 0, this);
+		g.drawImage(getImagen("fondo-bttf1.jpg"), 0, 0, this);
 		for (ObjetosEnPantalla objetos : objeto) {
 			objetos.paint(g);
 		}

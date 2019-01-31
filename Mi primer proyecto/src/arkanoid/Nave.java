@@ -14,7 +14,7 @@ public class Nave extends ObjetosEnPantalla {
 	
 	public Nave(Stage stage) {
 		super(stage);
-		setSpriteName("Nave1.png");
+		setSpriteName("delorean1.png");
 	}
 	
 	public void act() {
