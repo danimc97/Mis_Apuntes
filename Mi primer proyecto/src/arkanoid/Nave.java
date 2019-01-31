@@ -10,11 +10,12 @@ public class Nave extends ObjetosEnPantalla {
 	protected static int vx;
 	private static boolean left;
 	private static boolean right;
+	protected String nombre[]=new String [] {"delorean1.png"};
 		
 	
 	public Nave(Stage stage) {
 		super(stage);
-		setSpriteName("delorean1.png");
+		setSpriteName(nombre);
 	}
 	
 	public void act() {

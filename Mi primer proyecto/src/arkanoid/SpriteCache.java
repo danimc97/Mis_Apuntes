@@ -34,11 +34,11 @@ public class SpriteCache {
 		}
 	}
 	
-	public BufferedImage getSprite(String nombre) {
-		BufferedImage img = (BufferedImage)sprites.get(nombre);
+	public BufferedImage getSprite(String spriteName) {
+		BufferedImage img = (BufferedImage)sprites.get(spriteName);
 		if (img == null) {
-			img = loadImage(nombre);
-			sprites.put(nombre,img);
+			img = loadImage(spriteName);
+			sprites.put(spriteName,img);
 		}
 		return img;
 	}

@@ -15,11 +15,18 @@ import java.awt.image.BufferedImage;
 public class ObjetosEnPantalla {
 	protected int x,y;
 	protected int width, height;
-	protected String spriteName;
+	protected String[] spriteName;
 	protected Stage stage;
 	protected SpriteCache spriteCache;
 	protected boolean markedForRemoval;
+	protected int frameSpeed;
+	protected int currentFrame;
+	protected int t;
 	
+	
+	public void setFrameSpeed (int frameSpeed) {
+		this.frameSpeed=frameSpeed;
+	}
 	
 	public void remove() {
 		markedForRemoval= true;
@@ -42,10 +49,13 @@ public class ObjetosEnPantalla {
 	public ObjetosEnPantalla(Stage stage) {
 		this.stage = stage;
 		spriteCache = stage.getSpriteCache();
+		currentFrame=0;
+		frameSpeed=1;
+		t=0;
 	}
 	
 	public void paint(Graphics2D g){
-		g.drawImage( spriteCache.getSprite(spriteName), x,y, stage );
+		g.drawImage( spriteCache.getSprite(spriteName[currentFrame]), x,y, stage );
 	}
 	
 	public int getX()  { return x; }
@@ -54,10 +64,10 @@ public class ObjetosEnPantalla {
 	public int getY() {	return y; }
 	public void setY(int i) { y = i; }
 	
-	public String getSpriteName() {	return spriteName; }
-	public void setSpriteName(String string) { 
-		spriteName = string;
-		BufferedImage image = spriteCache.getSprite(spriteName);
+	public String[] getSpriteName() {	return spriteName; }
+	public void setSpriteName(String[] exp) { 
+		spriteName = exp;
+		BufferedImage image = spriteCache.getSprite(spriteName[currentFrame]);
 		height = image.getHeight();
 		width = image.getWidth();
 	}			
@@ -67,7 +77,11 @@ public class ObjetosEnPantalla {
 	public void setHeight(int i) {height = i;	}
 	public void setWidth(int i) {	width = i;	}
 
-	public void act() { }
-
-	
+	public void act() {
+		t++;
+		if(t%frameSpeed==0) {
+			t=0;
+			currentFrame=(currentFrame+1)% spriteName.length;
+		}
+	}
 }

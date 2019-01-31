@@ -2,11 +2,12 @@ package arkanoid;
 
 public class Ladrillo extends ObjetosEnPantalla {
 	
+	protected String nombre[]=new String [] {"ladrillo-amarillo.jpg","ladrillo-azul.jpg","ladrillo-rojo.jpg","ladrillo-verde.jpg"};
 	
-	
-	public Ladrillo(Stage stage) {
+	public Ladrillo(Stage stage, int colorLadrillos) {
 		super(stage);
-		setSpriteName("ladrillo-amarillo.jpg");
+		String name[]=new String[] {nombre[colorLadrillos]};
+		setSpriteName(name);
 		this.setWidth(54);
 		this.setHeight(18);
 	}

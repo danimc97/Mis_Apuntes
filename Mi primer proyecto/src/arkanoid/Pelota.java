@@ -11,10 +11,11 @@ package arkanoid;
 public class Pelota extends ObjetosEnPantalla {
 	protected int vx;
 	protected int vy;
+	protected String nombre[]=new String [] {"pelota-regreso1.png"};
 	
 	public Pelota(Stage stage) {
 		super(stage);
-		setSpriteName("pelota-regreso1.png");
+		setSpriteName(nombre);
 	}
 	
 	public void collision(ObjetosEnPantalla a) {

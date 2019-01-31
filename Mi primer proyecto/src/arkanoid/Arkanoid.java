@@ -46,6 +46,7 @@ public class Arkanoid extends Canvas implements Stage {
 	private SpriteCache spriteCache=new SpriteCache();
 	private List<ObjetosEnPantalla>objeto = new ArrayList<ObjetosEnPantalla>();
 	private Nave nave=new Nave(this);
+	private List <Explosion> explosion=new ArrayList<Explosion>();
 	
 	public Arkanoid() {
 
@@ -99,38 +100,14 @@ public class Arkanoid extends Canvas implements Stage {
 	      nave.setY(Stage.HEIGHT - 2*nave.getHeight());
 	      
 	   
-	      for (int i = 0; i < 10; i++){
-	        Ladrillo ladrillo = new Ladrillo(this);
-	        ladrillo.setSpriteName("ladrillo-amarillo.jpg");
-	        ladrillo.setX(20+i*61);
-	  	    ladrillo.setY(20);
-	        objeto.add(ladrillo);
+	      for (int j=0;j<4;j++) {
+	    	  for (int i=0;i<10;i++) {
+	    		  Ladrillo ladrillo=new Ladrillo(this,j);
+	    		  ladrillo.setX(5+i*63);
+	    		  ladrillo.setY(j*23);
+	    		  objeto.add(ladrillo);
+	    	  }
 	      }
-	      
-	      for (int i = 0; i < 10; i++){
-	        Ladrillo ladrillo = new Ladrillo(this);
-	        ladrillo.setSpriteName("ladrillo-azul.jpg");
-	        ladrillo.setX(20+i*61);
-	  	    ladrillo.setY(42);
-	        objeto.add(ladrillo);
-		  }
-	      
-	      for (int i = 0; i < 10; i++){
-	        Ladrillo ladrillo = new Ladrillo(this);
-	        ladrillo.setSpriteName("ladrillo-rojo.jpg");
-	        ladrillo.setX(20+i*61);
-	  	    ladrillo.setY(64);
-	        objeto.add(ladrillo);
-		  }
-	      
-	      for (int i = 0; i < 10; i++){
-	        Ladrillo ladrillo = new Ladrillo(this);
-	        ladrillo.setSpriteName("ladrillo-verde.jpg");
-	        ladrillo.setX(20+i*61);
-	  	    ladrillo.setY(86);
-	        objeto.add(ladrillo);
-		  }
-	      
 	}
 	
 	public void updateWorld() {
@@ -144,13 +121,29 @@ public class Arkanoid extends Canvas implements Stage {
 		while ( i < objeto.size()) {
 			ObjetosEnPantalla m = (ObjetosEnPantalla)objeto.get(i);
 			if (m.isMarkedForRemoval()) {
+				Explosion e=new Explosion(this);
+				e.setX(m.getX()+20);
+				e.setY(m.getY());
+				explosion.add(e);
 				objeto.remove(i);
 			} else {
 				m.act();
 				i++;
 			}
 		}
-		
+		for (i=0;i<explosion.size();) {
+			ObjetosEnPantalla m =(ObjetosEnPantalla) explosion.get(i);
+			if(m.isMarkedForRemoval()) {
+				explosion.remove(i);
+			}
+			else {
+				i++;
+			}
+		}
+		for(i=0;i<explosion.size();i++) {
+			ObjetosEnPantalla m=(ObjetosEnPantalla)explosion.get(i);
+			m.act();
+		}
 	}
 	
 	public void checkCollisions() {
@@ -179,6 +172,10 @@ public class Arkanoid extends Canvas implements Stage {
 		g.drawImage(getImagen("fondo-bttf1.jpg"), 0, 0, this);
 		for (ObjetosEnPantalla objetos : objeto) {
 			objetos.paint(g);
+		}
+		
+		for (ObjetosEnPantalla explosion : explosion) {
+			explosion.paint(g);
 		}
 		
 		g.setColor(Color.white);
