@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
-public class SpriteCache {
+public class SpriteCache extends ResourceCache{
 	private HashMap sprites;
 	
 	public SpriteCache() {
@@ -41,5 +41,10 @@ public class SpriteCache {
 			sprites.put(spriteName,img);
 		}
 		return img;
+	}
+
+	@Override
+	protected Object loadResource(URL url) {
+		return null;
 	}
 }

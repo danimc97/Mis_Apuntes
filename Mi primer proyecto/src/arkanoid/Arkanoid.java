@@ -38,6 +38,8 @@ import javax.swing.JPanel;
 
 
 
+
+
 public class Arkanoid extends Canvas implements Stage {
 	
 	private BufferStrategy strategy;
@@ -47,9 +49,10 @@ public class Arkanoid extends Canvas implements Stage {
 	private List<ObjetosEnPantalla>objeto = new ArrayList<ObjetosEnPantalla>();
 	private Nave nave=new Nave(this);
 	private List <Explosion> explosion=new ArrayList<Explosion>();
+	private SoundCache soundCache= new SoundCache();;
 	
 	public Arkanoid() {
-
+		
 		JFrame ventana = new JFrame("Invaders");
 		JPanel panel = (JPanel)ventana.getContentPane();
 		setBounds(0,0,Stage.WIDTH,Stage.HEIGHT);
@@ -99,7 +102,8 @@ public class Arkanoid extends Canvas implements Stage {
 	      nave.setX(Stage.WIDTH/2);
 	      nave.setY(Stage.HEIGHT - 2*nave.getHeight());
 	      
-	   
+	      soundCache.loopSound("Regreso Al Futuro.wav");
+	      
 	      for (int j=0;j<4;j++) {
 	    	  for (int i=0;i<10;i++) {
 	    		  Ladrillo ladrillo=new Ladrillo(this,j);
@@ -188,6 +192,10 @@ public class Arkanoid extends Canvas implements Stage {
 	
 	public SpriteCache getSpriteCache() {
 		return spriteCache;
+	}
+	
+	public SoundCache getSoundCache() {
+		return soundCache;
 	}
 
 	

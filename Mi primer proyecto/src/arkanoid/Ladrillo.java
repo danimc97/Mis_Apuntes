@@ -15,6 +15,7 @@ public class Ladrillo extends ObjetosEnPantalla {
 	public void collision(ObjetosEnPantalla a) {
         if (a instanceof Pelota) {
         	remove();
+        	stage.getSoundCache().playSound("8-bit-explosion.wav");
         }
      }
 }
