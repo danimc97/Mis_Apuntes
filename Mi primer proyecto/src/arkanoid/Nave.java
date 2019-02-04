@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 public class Nave extends ObjetosEnPantalla {
 	
 
-	protected static final int PLAYER_SPEED = 10;
+	protected static final int PLAYER_SPEED = 4;
 	protected static int vx;
 	private static boolean left;
 	private static boolean right;
@@ -20,12 +20,21 @@ public class Nave extends ObjetosEnPantalla {
 	
 	public void act() {
 		super.act();
+		if(this.right || this.left) {
 			x+=vx;
 			if (x < 0)
 			  x=0;
 			if (x > Stage.WIDTH-getWidth())
 				x=Stage.WIDTH-getWidth()-10;
+		}
+		x+=vx;
+		if (x < 0)
+		  x=0;
+		if (x > Stage.WIDTH-getWidth())
+			x=Stage.WIDTH-getWidth()-10;
+		
 	}
+	
 		
 
 	public int getVx() { return vx; }

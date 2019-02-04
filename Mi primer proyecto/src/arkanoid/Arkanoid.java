@@ -19,6 +19,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -50,6 +51,7 @@ public class Arkanoid extends Canvas implements Stage {
 	private Nave nave=new Nave(this);
 	private List <Explosion> explosion=new ArrayList<Explosion>();
 	private SoundCache soundCache= new SoundCache();;
+	Pelota m = new Pelota(this);
 	
 	public Arkanoid() {
 		
@@ -77,11 +79,16 @@ public class Arkanoid extends Canvas implements Stage {
 			
 			public void keyPressed(KeyEvent e) {
 				nave.keyPressed(e);
+				m.keyPressed(e);
 			}
 		});
 		this.addMouseMotionListener(new MouseAdapter() {
 			public void mouseMoved(MouseEvent e) {
 				nave.MouseMoved(e);
+			}
+			
+			public void mouseClicked(MouseEvent e) {
+				m.mouseClicked(e);
 			}
 		});
 		
@@ -89,18 +96,16 @@ public class Arkanoid extends Canvas implements Stage {
 	
 	public void initWorld() {
 	   
-	      Pelota m = new Pelota(this);
+	      
 //	      Nave nave= new Nave(this);
-	      	m.setX(300);
-		    m.setY(400);
-		    m.setVy(3);
-		    m.setVx(3);
-		    nave.setX(120);
-		    nave.setY(120);
+		  nave.setX(120);
+		  nave.setY(120);
 	      objeto.add(m);
 	      objeto.add(nave);
 	      nave.setX(Stage.WIDTH/2);
 	      nave.setY(Stage.HEIGHT - 2*nave.getHeight());
+	      
+		  
 	      
 	      soundCache.loopSound("Regreso Al Futuro.wav");
 	      
@@ -115,6 +120,11 @@ public class Arkanoid extends Canvas implements Stage {
 	}
 	
 	public void updateWorld() {
+		
+		if (m.getVx()==0 && m.getVy()==0) {
+	    	  m.setX(nave.getX()+40);
+			  m.setY(nave.getY()-m.getHeight());
+		}
 		
 		int i=0;
 		
