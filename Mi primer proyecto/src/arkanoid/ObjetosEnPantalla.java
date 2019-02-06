@@ -13,6 +13,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class ObjetosEnPantalla {
+	
 	protected int x,y;
 	protected int width, height;
 	protected String[] spriteName;

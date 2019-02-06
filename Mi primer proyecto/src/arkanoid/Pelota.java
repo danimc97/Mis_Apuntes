@@ -42,7 +42,6 @@ public class Pelota extends ObjetosEnPantalla {
 			case MouseEvent.BUTTON1:presionaBoton=true;
 			this.vx = 3;
 		  	this.vy = 3;
-		  	System.out.println("Estoy pulsando");
 			}
 		}
 	}

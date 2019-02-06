@@ -86,7 +86,9 @@ public class Arkanoid extends Canvas implements Stage {
 			public void mouseMoved(MouseEvent e) {
 				nave.MouseMoved(e);
 			}
-			
+		});
+		
+		this.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				m.mouseClicked(e);
 			}
@@ -117,9 +119,15 @@ public class Arkanoid extends Canvas implements Stage {
 	    		  objeto.add(ladrillo);
 	    	  }
 	      }
+	      
+	      if (m.getVx()==0 && m.getVy()==0) {
+	    	  m.setX(nave.getX()+40);
+			  m.setY(nave.getY()-m.getHeight());
+	      }
 	}
 	
 	public void updateWorld() {
+		
 		
 		if (m.getVx()==0 && m.getVy()==0) {
 	    	  m.setX(nave.getX()+40);
