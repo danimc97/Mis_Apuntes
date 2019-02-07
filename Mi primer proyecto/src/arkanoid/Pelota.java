@@ -20,6 +20,9 @@ public class Pelota extends ObjetosEnPantalla {
 	protected String nombre[]=new String [] {"pelota-regreso1.png"};
 	boolean presionaEspacio = false;
 	boolean presionaBoton = false;
+	TrayectoriaRecta trayectoria = null;
+	PuntoAltaPrecision coordenadas = null;
+	private float pixelsPorFrame = 3;
 	
 	public Pelota(Stage stage) {
 		super(stage);
@@ -28,11 +31,11 @@ public class Pelota extends ObjetosEnPantalla {
 	
 	public void collision(ObjetosEnPantalla a) {
         if (a instanceof Ladrillo) {
-        	vy=-vy;
+        	this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
         	//vx=-vx;
         }
         if (a instanceof Nave) {
-        	vy=-vy;
+        	this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
         }
      }
 	
@@ -58,13 +61,21 @@ public class Pelota extends ObjetosEnPantalla {
 	
 	public void act() {
 		if(this.presionaEspacio || this.presionaBoton) {
-			x+=vx;
-			if (x < 0 || x > Stage.WIDTH-28) {
-			  vx = -vx;
+			if (this.trayectoria == null) {
+				this.coordenadas = new PuntoAltaPrecision(x, y);
+				this.trayectoria = new TrayectoriaRecta(-2.5f, coordenadas, true);
 			}
-			y+=vy;
+			this.coordenadas = this.trayectoria.getPuntoADistanciaDePunto(this.coordenadas, pixelsPorFrame);
+			if (pixelsPorFrame < 12) {
+				pixelsPorFrame *= 1.00035;
+			}
+			this.x = Math.round(this.coordenadas.x);
+			this.y = Math.round(this.coordenadas.y);
+			if (x < 0 || x > Stage.WIDTH-28) {
+				this.trayectoria.reflejarHorizontalmenteRespectoAPunto(coordenadas);
+			}
 			if (y < 0 || y > Stage.HEIGHT-55) {
-			  vy = -vy;
+				this.trayectoria.reflejarVerticalmenteRespectoAPunto(coordenadas);
 			}
 		}
 		else {

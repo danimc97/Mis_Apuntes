@@ -111,6 +111,31 @@ public class TrayectoriaRecta {
 		this.direccionCreciente = !this.direccionCreciente;
 	}
 	
+	
+	/**
+	 * M�todo para modificar la pendiente por una nueva pendiente, adem�s tambi�n es necesario calcular
+	 * el nuevo punto de corte del eje de abcisas. Cuando se cambia la trayectoria siempre es necesario
+	 * hacerlo con un punto de pivote.
+	 * @param nuevaPendiente
+	 * @param puntoDePivote
+	 */
+	public void modificarPendiente (float nuevaPendiente, PuntoAltaPrecision puntoDePivote) {
+		modificarPendiente(nuevaPendiente, puntoDePivote, this.direccionCreciente);
+	}
+	
+	/**
+	 * M�todo para modificar la pendiente por una nueva pendiente, adem�s tambi�n es necesario calcular
+	 * el nuevo punto de corte del eje de abcisas. Cuando se cambia la trayectoria siempre es necesario
+	 * hacerlo con un punto de pivote.
+	 * @param nuevaPendiente
+	 * @param puntoDePivote
+	 */
+	public void modificarPendiente (float nuevaPendiente, PuntoAltaPrecision puntoDePivote, boolean direccionCreciente) {
+		this.m = nuevaPendiente;
+		this.o = puntoDePivote.y - this.m * puntoDePivote.x;
+		this.direccionCreciente = direccionCreciente;
+	}
+	
 	/**
 	 * T�pico toString
 	 */
