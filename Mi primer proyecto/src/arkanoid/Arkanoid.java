@@ -50,13 +50,14 @@ public class Arkanoid extends Canvas implements Stage {
 	private List<ObjetosEnPantalla>objeto = new ArrayList<ObjetosEnPantalla>();
 	private Nave nave=new Nave(this);
 	private List <Explosion> explosion=new ArrayList<Explosion>();
-	private SoundCache soundCache= new SoundCache();;
+	private SoundCache soundCache= new SoundCache();
 	Pelota m = new Pelota(this);
 	Rectangle limitePantalla= new Rectangle(0, 450, 640, 5);
+	private boolean bolaBorrada=false;
 	
 	public Arkanoid() {
 		
-		JFrame ventana = new JFrame("Invaders");
+		JFrame ventana = new JFrame("Arkanoid-Back to the Future");
 		JPanel panel = (JPanel)ventana.getContentPane();
 		setBounds(0,0,Stage.WIDTH,Stage.HEIGHT);
 		panel.setPreferredSize(new Dimension(Stage.WIDTH,Stage.HEIGHT));
@@ -147,14 +148,35 @@ public class Arkanoid extends Canvas implements Stage {
 		while ( i < objeto.size()) {
 			ObjetosEnPantalla m = (ObjetosEnPantalla)objeto.get(i);
 			if (m.isMarkedForRemoval()) {
-				Explosion e=new Explosion(this);
-				e.setX(m.getX()+20);
-				e.setY(m.getY());
-				explosion.add(e);
-				objeto.remove(i);
-			} else {
+				if(m instanceof Pelota) {
+					Explosion e=new Explosion(this);
+					e.setX(m.getX()+20);
+					e.setY(m.getY());
+					explosion.add(e);
+					objeto.remove(i);
+					this.m=new Pelota(this);
+					this.m.setX(nave.getX()+40);
+					this.m.setY(nave.getY()-m.getHeight());
+					this.m.setVx(0);
+					this.m.setVy(0);
+					bolaBorrada=true;
+				}
+				else {
+					Explosion e=new Explosion(this);
+					e.setX(m.getX()+20);
+					e.setY(m.getY());
+					explosion.add(e);
+					objeto.remove(i);
+				}
+			}
+			else {
 				m.act();
 				i++;
+			}
+			
+			if(bolaBorrada) {
+				objeto.add(this.m);
+				bolaBorrada=false;
 			}
 		}
 		

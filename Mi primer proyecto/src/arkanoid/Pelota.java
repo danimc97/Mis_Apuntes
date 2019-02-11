@@ -31,6 +31,8 @@ public class Pelota extends ObjetosEnPantalla {
 	protected long segundos;
 	private List <Explosion> explosion=new ArrayList<Explosion>();
 	boolean novojogo=false;
+	private List<ObjetosEnPantalla>objeto = new ArrayList<ObjetosEnPantalla>();
+	Nave nave =new Nave(stage);
 	
 	public Pelota(Stage stage) {
 		super(stage);
@@ -52,10 +54,6 @@ public class Pelota extends ObjetosEnPantalla {
     	Rectangle rectanguloArriba= new Rectangle(a.x, a.y+1, a.width, 1);
     	Rectangle rectanguloDerecha= new Rectangle(a.x+a.width-1, a.y, 1, a.height);
     	Rectangle rectanguloIzquierda= new Rectangle(a.x, a.y, 1, a.height);
-    	boolean arriba=false;
-    	boolean abajo=false;
-    	boolean derecha=false;
-    	boolean izquierda=false;
     	
     	if (this.getBounds().intersects(rectanguloIzquierda)&& this.getBounds().intersects(rectanguloAbajo)) {
     		this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
@@ -81,28 +79,28 @@ public class Pelota extends ObjetosEnPantalla {
     	
 				    	if (this.getBounds().intersects(rectanguloIzquierda)) {
 				    		this.trayectoria.reflejarHorizontalmenteRespectoAPunto(this.coordenadas);
-				    		izquierda=true;
+				    		
 				    		//System.out.println("Izquierda");
 				    	}
 				    	else {
 				    	
 					    	if (this.getBounds().intersects(rectanguloDerecha)) {
 					    		this.trayectoria.reflejarHorizontalmenteRespectoAPunto(this.coordenadas);
-					    		derecha=true;
+					    		
 					    		//System.out.println("Derecha");
 					    	}
 					    	else {
 					    	
 						    	if (this.getBounds().intersects(rectanguloArriba)) {
 						    		this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
-						    		arriba=true;
+						    		
 						    		//System.out.println("Arriba");
 						    	}
 						    	else {
 							    	
 							    	if (this.getBounds().intersects(rectanguloAbajo)) {
 							    		this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
-							    		abajo=true;
+							    		
 							    		//System.out.println("Abajo");
 							    	}
 						    	}
@@ -120,10 +118,7 @@ public class Pelota extends ObjetosEnPantalla {
     	Rectangle rectanguloArriba= new Rectangle(a.x, a.y+1, a.width, 1);
     	Rectangle rectanguloDerecha= new Rectangle(a.x+a.width-1, a.y, 1, a.height);
     	Rectangle rectanguloIzquierda= new Rectangle(a.x, a.y, 1, a.height);
-    	boolean arriba=false;
-    	boolean abajo=false;
-    	boolean derecha=false;
-    	boolean izquierda=false;
+    	
     	
     	if (this.getBounds().intersects(rectanguloIzquierda)&& this.getBounds().intersects(rectanguloAbajo)) {
     		this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
@@ -144,29 +139,26 @@ public class Pelota extends ObjetosEnPantalla {
     	
 				    	if (this.getBounds().intersects(rectanguloIzquierda)) {
 				    		this.trayectoria.reflejarHorizontalmenteRespectoAPunto(this.coordenadas);
-				    		izquierda=true;
-				    		System.out.println("Izquierda");
+				    		
+				    		
 				    	}
 				    	else {
 				    	
 					    	if (this.getBounds().intersects(rectanguloDerecha)) {
 					    		this.trayectoria.reflejarHorizontalmenteRespectoAPunto(this.coordenadas);
-					    		derecha=true;
-					    		System.out.println("Derecha");
+					    		
 					    	}
 					    	else {
 					    	
 						    	if (this.getBounds().intersects(rectanguloArriba)) {
 						    		this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
-						    		arriba=true;
-						    		System.out.println("Arriba");
+						    		
 						    	}
 						    	else {
 							    	
 							    	if (this.getBounds().intersects(rectanguloAbajo)) {
 							    		this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
-							    		abajo=true;
-							    		System.out.println("Abajo");
+							    		
 							    	}
 						    	}
 					    	}
@@ -226,11 +218,8 @@ public class Pelota extends ObjetosEnPantalla {
 				this.trayectoria.reflejarHorizontalmenteRespectoAPunto(coordenadas);
 			}
 			if (y > Stage.HEIGHT-60) {
-				pixelsPorFrame=0;
-				Explosion e=new Explosion(stage);
-				e.setX(this.x);
-				e.setY(this.y);
-				explosion.add(e);
+				novojogo=true;
+				//pixelsPorFrame=0;
 				this.remove();
 			}
 			if (y<0) {
