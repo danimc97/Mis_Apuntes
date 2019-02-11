@@ -219,7 +219,6 @@ public class Pelota extends ObjetosEnPantalla {
 			}
 			if (y > Stage.HEIGHT-60) {
 				novojogo=true;
-				//pixelsPorFrame=0;
 				this.remove();
 			}
 			if (y<0) {
