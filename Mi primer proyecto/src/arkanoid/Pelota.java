@@ -12,6 +12,8 @@ package arkanoid;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pelota extends ObjetosEnPantalla {
 	protected int vx;
@@ -27,6 +29,8 @@ public class Pelota extends ObjetosEnPantalla {
 	protected long millis = System.currentTimeMillis();
 	protected long millisactuales;
 	protected long segundos;
+	private List <Explosion> explosion=new ArrayList<Explosion>();
+	boolean novojogo=false;
 	
 	public Pelota(Stage stage) {
 		super(stage);
@@ -38,7 +42,7 @@ public class Pelota extends ObjetosEnPantalla {
         	chocaLadrillo((Ladrillo)a);
         }
         if (a instanceof Nave) {
-        	chocaNave((Nave)a);
+        	chocaCoche((Nave)a);
         }
      }
 	
@@ -53,60 +57,65 @@ public class Pelota extends ObjetosEnPantalla {
     	boolean derecha=false;
     	boolean izquierda=false;
     	
-    	if (this.getBounds().intersects(rectanguloIzquierda)) {
-    		this.trayectoria.reflejarHorizontalmenteRespectoAPunto(this.coordenadas);
-    		izquierda=true;
-    		System.out.println("Izquierda");
+    	if (this.getBounds().intersects(rectanguloIzquierda)&& this.getBounds().intersects(rectanguloAbajo)) {
+    		this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
+    		//this.trayectoria= new TrayectoriaRecta(2.5f, coordenadas, false);
+    		//System.out.println("Esquina izquierda inferior");
     	}
     	else {
-	    	if (this.getBounds().intersects(rectanguloDerecha)) {
-	    		this.trayectoria.reflejarHorizontalmenteRespectoAPunto(this.coordenadas);
-	    		derecha=true;
-	    		System.out.println("Derecha");
-	    	}
-	    	else {
-		    	if (this.getBounds().intersects(rectanguloArriba)) {
-		    		this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
-		    		arriba=true;
-		    		System.out.println("Arriba");
-		    	}
-		    	else {
-			    	if (this.getBounds().intersects(rectanguloAbajo)) {
-			    		this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
-			    		abajo=true;
-			    		System.out.println("Abajo");
+    		if (this.getBounds().intersects(rectanguloDerecha)&& this.getBounds().intersects(rectanguloAbajo)) {
+    			this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
+    			//System.out.println("Esquina derecha inferior");
+        	}
+    		else {
+    			if (this.getBounds().intersects(rectanguloIzquierda)&& this.getBounds().intersects(rectanguloArriba)) {
+    				this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
+    				//System.out.println("Esquina izquierda superior");
+            	}
+    			else {
+    				if (this.getBounds().intersects(rectanguloDerecha)&& this.getBounds().intersects(rectanguloArriba)) {
+    					this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
+    					//System.out.println("Esquina derecha superior");
+    	        	}
+    				else {
+    	
+				    	if (this.getBounds().intersects(rectanguloIzquierda)) {
+				    		this.trayectoria.reflejarHorizontalmenteRespectoAPunto(this.coordenadas);
+				    		izquierda=true;
+				    		//System.out.println("Izquierda");
+				    	}
+				    	else {
+				    	
+					    	if (this.getBounds().intersects(rectanguloDerecha)) {
+					    		this.trayectoria.reflejarHorizontalmenteRespectoAPunto(this.coordenadas);
+					    		derecha=true;
+					    		//System.out.println("Derecha");
+					    	}
+					    	else {
+					    	
+						    	if (this.getBounds().intersects(rectanguloArriba)) {
+						    		this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
+						    		arriba=true;
+						    		//System.out.println("Arriba");
+						    	}
+						    	else {
+							    	
+							    	if (this.getBounds().intersects(rectanguloAbajo)) {
+							    		this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
+							    		abajo=true;
+							    		//System.out.println("Abajo");
+							    	}
+						    	}
+					    	}
+				    	}
 			    	}
 		    	}
 	    	}
     	}
-    	
-    	if (arriba==true && derecha==true) {
-    		this.coordenadas.x*=-1;
-    		this.coordenadas.y*=-1;
-    	}
-    	else {
-    		if (arriba==true && izquierda==true) {
-        		this.coordenadas.x*=-1;
-        		this.coordenadas.y*=-1;
-        	}
-    		else {
-    			if (abajo==true && derecha==true) {
-    	    		this.coordenadas.x*=-1;
-    	    		this.coordenadas.y*=-1;
-    	    	}
-    			else {
-    				if (abajo==true && izquierda==true) {
-    		    		this.coordenadas.x*=-1;
-    		    		this.coordenadas.y*=-1;
-    		    	}
-    			}
-    		}
-    	}
-    	
+		    
 	}
 	
-	public void chocaNave(Nave a) {
-		
+	public void chocaCoche(Nave a) {
 		Rectangle rectanguloAbajo= new Rectangle(a.x, a.y+a.height-1, a.width, 1);
     	Rectangle rectanguloArriba= new Rectangle(a.x, a.y+1, a.width, 1);
     	Rectangle rectanguloDerecha= new Rectangle(a.x+a.width-1, a.y, 1, a.height);
@@ -116,57 +125,59 @@ public class Pelota extends ObjetosEnPantalla {
     	boolean derecha=false;
     	boolean izquierda=false;
     	
-    	if (this.getBounds().intersects(rectanguloIzquierda)) {
-    		this.trayectoria.reflejarHorizontalmenteRespectoAPunto(this.coordenadas);
-    		izquierda=true;
-    		System.out.println("Izquierda");
+    	if (this.getBounds().intersects(rectanguloIzquierda)&& this.getBounds().intersects(rectanguloAbajo)) {
+    		this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
     	}
     	else {
-	    	if (this.getBounds().intersects(rectanguloDerecha)) {
-	    		this.trayectoria.reflejarHorizontalmenteRespectoAPunto(this.coordenadas);
-	    		derecha=true;
-	    		System.out.println("Derecha");
-	    	}
-	    	else {
-		    	if (this.getBounds().intersects(rectanguloArriba)) {
-		    		this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
-		    		arriba=true;
-		    		System.out.println("Arriba");
-		    	}
-		    	else {
-			    	if (this.getBounds().intersects(rectanguloAbajo)) {
-			    		this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
-			    		abajo=true;
-			    		System.out.println("Abajo");
+    		if (this.getBounds().intersects(rectanguloDerecha)&& this.getBounds().intersects(rectanguloAbajo)) {
+    			this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
+        	}
+    		else {
+    			if (this.getBounds().intersects(rectanguloDerecha)&& this.getBounds().intersects(rectanguloArriba)) {
+    				this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
+            	}
+    			else {
+    				if (this.getBounds().intersects(rectanguloIzquierda)&& this.getBounds().intersects(rectanguloArriba)) {
+    					this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
+    	        	}
+    				else {
+    	
+				    	if (this.getBounds().intersects(rectanguloIzquierda)) {
+				    		this.trayectoria.reflejarHorizontalmenteRespectoAPunto(this.coordenadas);
+				    		izquierda=true;
+				    		System.out.println("Izquierda");
+				    	}
+				    	else {
+				    	
+					    	if (this.getBounds().intersects(rectanguloDerecha)) {
+					    		this.trayectoria.reflejarHorizontalmenteRespectoAPunto(this.coordenadas);
+					    		derecha=true;
+					    		System.out.println("Derecha");
+					    	}
+					    	else {
+					    	
+						    	if (this.getBounds().intersects(rectanguloArriba)) {
+						    		this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
+						    		arriba=true;
+						    		System.out.println("Arriba");
+						    	}
+						    	else {
+							    	
+							    	if (this.getBounds().intersects(rectanguloAbajo)) {
+							    		this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
+							    		abajo=true;
+							    		System.out.println("Abajo");
+							    	}
+						    	}
+					    	}
+				    	}
 			    	}
 		    	}
 	    	}
     	}
-    	
-    	if (arriba==true && derecha==true) {
-    		this.coordenadas.x*=-1;
-    		this.coordenadas.y*=-1;
-    	}
-    	else {
-    		if (arriba==true && izquierda==true) {
-        		this.coordenadas.x*=-1;
-        		this.coordenadas.y*=-1;
-        	}
-    		else {
-    			if (abajo==true && derecha==true) {
-    	    		this.coordenadas.x*=-1;
-    	    		this.coordenadas.y*=-1;
-    	    	}
-    			else {
-    				if (abajo==true && izquierda==true) {
-    		    		this.coordenadas.x*=-1;
-    		    		this.coordenadas.y*=-1;
-    		    	}
-    			}
-    		}
-    	}
-		
+		    
 	}
+	
 	
 	
 	
@@ -199,13 +210,14 @@ public class Pelota extends ObjetosEnPantalla {
 		segundos=millisactuales-millis;
 		
 		
+		
 		if(this.presionaEspacio || this.presionaBoton || segundos >5000) {
 			if (this.trayectoria == null) {
 				this.coordenadas = new PuntoAltaPrecision(x, y);
 				this.trayectoria = new TrayectoriaRecta(-2.5f, coordenadas, true);
 			}
 			this.coordenadas = this.trayectoria.getPuntoADistanciaDePunto(this.coordenadas, pixelsPorFrame);
-			if (pixelsPorFrame < 1) {
+			if (pixelsPorFrame < 9) {
 				pixelsPorFrame *= 1.00035;
 			}
 			this.x = Math.round(this.coordenadas.x);
@@ -213,7 +225,15 @@ public class Pelota extends ObjetosEnPantalla {
 			if (x < 0 || x > Stage.WIDTH-28) {
 				this.trayectoria.reflejarHorizontalmenteRespectoAPunto(coordenadas);
 			}
-			if (y < 0 || y > Stage.HEIGHT-55) {
+			if (y > Stage.HEIGHT-60) {
+				pixelsPorFrame=0;
+				Explosion e=new Explosion(stage);
+				e.setX(this.x);
+				e.setY(this.y);
+				explosion.add(e);
+				this.remove();
+			}
+			if (y<0) {
 				this.trayectoria.reflejarVerticalmenteRespectoAPunto(coordenadas);
 			}
 		}

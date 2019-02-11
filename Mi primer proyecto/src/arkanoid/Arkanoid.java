@@ -52,6 +52,7 @@ public class Arkanoid extends Canvas implements Stage {
 	private List <Explosion> explosion=new ArrayList<Explosion>();
 	private SoundCache soundCache= new SoundCache();;
 	Pelota m = new Pelota(this);
+	Rectangle limitePantalla= new Rectangle(0, 450, 640, 5);
 	
 	public Arkanoid() {
 		
@@ -96,6 +97,7 @@ public class Arkanoid extends Canvas implements Stage {
 		
 	}
 	
+	
 	public void initWorld() {
 	   
 	      
@@ -106,6 +108,7 @@ public class Arkanoid extends Canvas implements Stage {
 	      objeto.add(nave);
 	      nave.setX(Stage.WIDTH/2);
 	      nave.setY(Stage.HEIGHT - 2*nave.getHeight());
+	      
 	      
 		  
 	      
@@ -129,7 +132,8 @@ public class Arkanoid extends Canvas implements Stage {
 	public void updateWorld() {
 		
 		
-		if (m.getVx()==0 && m.getVy()==0) {
+		
+		if ((m.getVx()==0 && m.getVy()==0)) {
 	    	  m.setX(nave.getX()+40);
 			  m.setY(nave.getY()-m.getHeight());
 		}
@@ -153,6 +157,7 @@ public class Arkanoid extends Canvas implements Stage {
 				i++;
 			}
 		}
+		
 		for (i=0;i<explosion.size();) {
 			ObjetosEnPantalla m =(ObjetosEnPantalla) explosion.get(i);
 			if(m.isMarkedForRemoval()) {

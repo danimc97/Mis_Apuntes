@@ -15,9 +15,9 @@ package arkanoid;
  */
 public class TrayectoriaRecta {
 	
-	private float m; // Pendiente
+	public float m; // Pendiente
 	private float o; // ordenada en el origen
-	private boolean direccionCreciente = false; // Direcci�n en la que se recorre la recta
+	public boolean direccionCreciente = false; // Direcci�n en la que se recorre la recta
 	
 	/**
 	 * Constuctor de una trayectoria a partir de dos puntos de alta precisi�n y una direcci�n en la que se recorre
