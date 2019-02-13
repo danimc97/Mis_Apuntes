@@ -38,7 +38,12 @@ public class ObjetosEnPantalla {
 		return markedForRemoval;
 	}
 	
-	 public Rectangle getBounds() {
+	
+	 public void setMarkedForRemoval(boolean markedForRemoval) {
+		this.markedForRemoval = markedForRemoval;
+	}
+
+	public Rectangle getBounds() {
          return new Rectangle(x,y,width,height);
        }
        

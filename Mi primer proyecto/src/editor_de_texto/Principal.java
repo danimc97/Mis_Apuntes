@@ -60,7 +60,7 @@ public class Principal {
 				System.out.print("Portapeles: "+LineasCortadas);
 				
 				for(int i=introduceUsuarioInicial;i<introduceUsuarioFinal;i++) {
-					LineaDeTexto.remove(0);
+					LineaDeTexto.remove(i);
 				}
 				System.out.println();
 				System.out.println(LineaDeTexto+" ");

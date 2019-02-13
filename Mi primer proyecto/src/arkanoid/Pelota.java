@@ -33,6 +33,7 @@ public class Pelota extends ObjetosEnPantalla {
 	boolean novojogo=false;
 	private List<ObjetosEnPantalla>objeto = new ArrayList<ObjetosEnPantalla>();
 	Nave nave =new Nave(stage);
+	boolean arreglarVidas=false;
 	
 	public Pelota(Stage stage) {
 		super(stage);
@@ -220,6 +221,10 @@ public class Pelota extends ObjetosEnPantalla {
 			if (y > Stage.HEIGHT-60) {
 				novojogo=true;
 				this.remove();
+				if(arreglarVidas==false) {
+					Arkanoid.contadorVidas--;
+					arreglarVidas=true;
+				}
 			}
 			if (y<0) {
 				this.trayectoria.reflejarVerticalmenteRespectoAPunto(coordenadas);

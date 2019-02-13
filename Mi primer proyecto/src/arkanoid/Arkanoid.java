@@ -12,6 +12,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
@@ -30,7 +31,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -51,14 +54,19 @@ public class Arkanoid extends Canvas implements Stage {
 	private Nave nave=new Nave(this);
 	private List <Explosion> explosion=new ArrayList<Explosion>();
 	private SoundCache soundCache= new SoundCache();
-	Pelota m = new Pelota(this);
+	Pelota pelota = new Pelota(this);
 	Rectangle limitePantalla= new Rectangle(0, 450, 640, 5);
 	private boolean bolaBorrada=false;
+	Fase fase = new Fase01();
+	private boolean nuevaFase=false;	
+	static public int contadorVidas=3;
+	JPanel panel;
+	JFrame ventana;
 	
 	public Arkanoid() {
 		
-		JFrame ventana = new JFrame("Arkanoid-Back to the Future");
-		JPanel panel = (JPanel)ventana.getContentPane();
+		ventana = new JFrame("Arkanoid-Back to the Future");
+		panel = (JPanel)ventana.getContentPane();
 		setBounds(0,0,Stage.WIDTH,Stage.HEIGHT);
 		panel.setPreferredSize(new Dimension(Stage.WIDTH,Stage.HEIGHT));
 		panel.setLayout(null);
@@ -81,7 +89,7 @@ public class Arkanoid extends Canvas implements Stage {
 			
 			public void keyPressed(KeyEvent e) {
 				nave.keyPressed(e);
-				m.keyPressed(e);
+				pelota.keyPressed(e);
 			}
 		});
 		this.addMouseMotionListener(new MouseAdapter() {
@@ -92,7 +100,7 @@ public class Arkanoid extends Canvas implements Stage {
 		
 		this.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				m.mouseClicked(e);
+				pelota.mouseClicked(e);
 			}
 		});
 		
@@ -102,10 +110,11 @@ public class Arkanoid extends Canvas implements Stage {
 	public void initWorld() {
 	   
 	      
-//	      Nave nave= new Nave(this);
+		pelota= new Pelota(this);
+		objeto.clear();
 		  nave.setX(120);
 		  nave.setY(120);
-	      objeto.add(m);
+	      objeto.add(pelota);
 	      objeto.add(nave);
 	      nave.setX(Stage.WIDTH/2);
 	      nave.setY(Stage.HEIGHT - 2*nave.getHeight());
@@ -115,28 +124,24 @@ public class Arkanoid extends Canvas implements Stage {
 	      
 	      soundCache.loopSound("Regreso Al Futuro.wav");
 	      
-	      for (int j=0;j<4;j++) {
-	    	  for (int i=0;i<10;i++) {
-	    		  Ladrillo ladrillo=new Ladrillo(this,j);
-	    		  ladrillo.setX(5+i*63);
-	    		  ladrillo.setY(j*23);
-	    		  objeto.add(ladrillo);
-	    	  }
-	      }
 	      
-	      if (m.getVx()==0 && m.getVy()==0) {
-	    	  m.setX(nave.getX()+40);
-			  m.setY(nave.getY()-m.getHeight());
+	      fase.inicializaFase(this);
+	      objeto.addAll(fase.actores);
+	      
+	      if (pelota.getVx()==0 && pelota.getVy()==0 || nuevaFase==true) {
+	    	  pelota.setX(nave.getX()+40);
+			  pelota.setY(nave.getY()-pelota.getHeight());
 	      }
 	}
+	
 	
 	public void updateWorld() {
 		
 		
 		
-		if ((m.getVx()==0 && m.getVy()==0)) {
-	    	  m.setX(nave.getX()+40);
-			  m.setY(nave.getY()-m.getHeight());
+		if ((pelota.getVx()==0 && pelota.getVy()==0)) {
+	    	  pelota.setX(nave.getX()+40);
+			  pelota.setY(nave.getY()-pelota.getHeight());
 		}
 		
 		int i=0;
@@ -154,19 +159,30 @@ public class Arkanoid extends Canvas implements Stage {
 					e.setY(m.getY());
 					explosion.add(e);
 					objeto.remove(i);
-					this.m=new Pelota(this);
-					this.m.setX(nave.getX()+40);
-					this.m.setY(nave.getY()-m.getHeight());
-					this.m.setVx(0);
-					this.m.setVy(0);
+					this.pelota=new Pelota(this);
+					this.pelota.setX(nave.getX()+40);
+					this.pelota.setY(nave.getY()-m.getHeight());
+					this.pelota.setVx(0);
+					this.pelota.setVy(0);
 					bolaBorrada=true;
+					pelota.arreglarVidas=false;
 				}
 				else {
-					Explosion e=new Explosion(this);
-					e.setX(m.getX()+20);
-					e.setY(m.getY());
-					explosion.add(e);
-					objeto.remove(i);
+					if(m instanceof Ladrillo) {
+						if(((Ladrillo)m).dosVidas==true) {
+							getSoundCache().playSound("Arkanoid-SFX-05.wav");	
+							((Ladrillo)m).dosVidas=false;
+							m.setMarkedForRemoval(false);
+						}
+					}
+					else {
+						Explosion e=new Explosion(this);
+						e.setX(m.getX()+20);
+						e.setY(m.getY());
+						explosion.add(e);
+						objeto.remove(i);
+						fase.contadorLadrillo--;
+					}
 				}
 			}
 			else {
@@ -175,7 +191,7 @@ public class Arkanoid extends Canvas implements Stage {
 			}
 			
 			if(bolaBorrada) {
-				objeto.add(this.m);
+				objeto.add(this.pelota);
 				bolaBorrada=false;
 			}
 		}
@@ -227,6 +243,8 @@ public class Arkanoid extends Canvas implements Stage {
 			explosion.paint(g);
 		}
 		
+		g.drawString("Vidas restantes: "+contadorVidas, 500, 400);
+		
 		g.setColor(Color.white);
 		if (usedTime > 0)
 		  g.drawString(String.valueOf(1000/usedTime)+" fps",0,Stage.HEIGHT-50);
@@ -257,6 +275,8 @@ public class Arkanoid extends Canvas implements Stage {
 		}
 	}
 	
+	
+	
 	/*public SpriteCache getSpriteCache() {
 		return spriteCache;
 	}*/
@@ -272,7 +292,35 @@ public class Arkanoid extends Canvas implements Stage {
 			usedTime = System.currentTimeMillis()-startTime;
 			try { 
 				 Thread.sleep(SPEED);
-			} catch (InterruptedException e) {}
+			} catch (InterruptedException e) {
+				
+			}
+			if (fase.contadorLadrillo<=0) {
+				nuevaFase=true;
+				JOptionPane.showMessageDialog(null, "¡Doc! Hay que ir de regreso al futuro a por una nueva fase");
+				explosion.clear();
+				objeto.clear();
+				objeto.add(new Animacion (this));
+				while(objeto.isEmpty()==false) {
+					updateWorld();
+					paintWorld();
+				}
+				fase= new Fase02();
+				initWorld();
+			}
+			else {
+				
+				if(contadorVidas<=0) {
+					Graphics2D g = (Graphics2D)strategy.getDrawGraphics();
+					Ladrillo ladrillo= new Ladrillo(this,5);
+					objeto.clear();
+					objeto.add(ladrillo);
+					updateWorld();
+					paintWorld();
+					JOptionPane.showMessageDialog(null, "Perdiste, McFly");
+					System.exit(0);
+				}
+			}
 		}
 	}
 	
