@@ -23,8 +23,7 @@ public class ObjetosEnPantalla {
 	protected int frameSpeed;
 	protected int currentFrame;
 	protected int t;
-	
-	
+
 	public void setFrameSpeed (int frameSpeed) {
 		this.frameSpeed=frameSpeed;
 	}

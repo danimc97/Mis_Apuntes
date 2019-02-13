@@ -36,6 +36,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import ahorcado.Ventana;
+
 
 
 
@@ -168,13 +170,13 @@ public class Arkanoid extends Canvas implements Stage {
 					pelota.arreglarVidas=false;
 				}
 				else {
-					if(m instanceof Ladrillo) {
+				//	if(m instanceof Ladrillo) {
 						if(((Ladrillo)m).dosVidas==true) {
 							getSoundCache().playSound("Arkanoid-SFX-05.wav");	
 							((Ladrillo)m).dosVidas=false;
 							m.setMarkedForRemoval(false);
 						}
-					}
+					//}
 					else {
 						Explosion e=new Explosion(this);
 						e.setX(m.getX()+20);
@@ -295,13 +297,13 @@ public class Arkanoid extends Canvas implements Stage {
 			} catch (InterruptedException e) {
 				
 			}
-			if (fase.contadorLadrillo<=0) {
+			if (fase.contadorLadrillo<=29) {
 				nuevaFase=true;
 				JOptionPane.showMessageDialog(null, "¡Doc! Hay que ir de regreso al futuro a por una nueva fase");
 				explosion.clear();
 				objeto.clear();
-				objeto.add(new Animacion (this));
-				while(objeto.isEmpty()==false) {
+				explosion.add(new Explosion (this));
+				while(explosion.isEmpty()==false) {
 					updateWorld();
 					paintWorld();
 				}
@@ -323,6 +325,8 @@ public class Arkanoid extends Canvas implements Stage {
 			}
 		}
 	}
+	
+	
 	
 	public static void main(String[] args) {
 		Arkanoid inv = new Arkanoid();

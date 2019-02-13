@@ -3,7 +3,6 @@ package arkanoid;
 
 public class Explosion extends ObjetosEnPantalla {
 
-	
 	String exp[]=new String[] {
 		"explosion1.png",
 		"explosion2.png",
