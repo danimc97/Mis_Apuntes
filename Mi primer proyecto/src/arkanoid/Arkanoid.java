@@ -64,6 +64,7 @@ public class Arkanoid extends Canvas implements Stage {
 	static public int contadorVidas=3;
 	JPanel panel;
 	JFrame ventana;
+	private boolean arreglarAnimacion=false ;
 	
 	public Arkanoid() {
 		
@@ -168,9 +169,10 @@ public class Arkanoid extends Canvas implements Stage {
 					this.pelota.setVy(0);
 					bolaBorrada=true;
 					pelota.arreglarVidas=false;
+					//arreglarAnimacion=false;
 				}
 				else {
-				//	if(m instanceof Ladrillo) {
+					//if(arreglarAnimacion) {
 						if(((Ladrillo)m).dosVidas==true) {
 							getSoundCache().playSound("Arkanoid-SFX-05.wav");	
 							((Ladrillo)m).dosVidas=false;
@@ -297,13 +299,14 @@ public class Arkanoid extends Canvas implements Stage {
 			} catch (InterruptedException e) {
 				
 			}
-			if (fase.contadorLadrillo<=29) {
+			if (fase.contadorLadrillo<=0 && nuevaFase==false) {
 				nuevaFase=true;
 				JOptionPane.showMessageDialog(null, "¡Doc! Hay que ir de regreso al futuro a por una nueva fase");
 				explosion.clear();
 				objeto.clear();
-				explosion.add(new Explosion (this));
-				while(explosion.isEmpty()==false) {
+				//arreglarAnimacion=false;
+				objeto.add(new Animacion (this));
+				while(objeto.isEmpty()==false) {
 					updateWorld();
 					paintWorld();
 				}
