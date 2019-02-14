@@ -54,7 +54,7 @@ public class Animacion extends ObjetosEnPantalla {
 	public Animacion(Stage stage) {
 		super(stage);
 		setSpriteName(exp);
-		setFrameSpeed(3);
+		setFrameSpeed(5);
 	}
 	
 	public void act () {

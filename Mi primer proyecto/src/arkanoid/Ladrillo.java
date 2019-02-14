@@ -14,7 +14,7 @@ public class Ladrillo extends ObjetosEnPantalla {
 		String name[]=new String[] {nombre[colorLadrillos]};
 		setSpriteName(name);
 		this.codigoLadrilloAmarillo=colorLadrillos;
-		if(colorLadrillos==1) {
+		if(colorLadrillos==3) {
 		dosVidas=true;
 		}
 	}

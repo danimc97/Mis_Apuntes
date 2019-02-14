@@ -171,14 +171,13 @@ public class Arkanoid extends Canvas implements Stage {
 					pelota.arreglarVidas=false;
 					//arreglarAnimacion=false;
 				}
-				else {
-					//if(arreglarAnimacion) {
+				else if(m instanceof Ladrillo) {
 						if(((Ladrillo)m).dosVidas==true) {
 							getSoundCache().playSound("Arkanoid-SFX-05.wav");	
-							((Ladrillo)m).dosVidas=false;
-							m.setMarkedForRemoval(false);
+							((Ladrillo)objeto.get(i)).dosVidas=false;
+							objeto.get(i).setMarkedForRemoval(false);
 						}
-					//}
+					
 					else {
 						Explosion e=new Explosion(this);
 						e.setX(m.getX()+20);
@@ -187,6 +186,14 @@ public class Arkanoid extends Canvas implements Stage {
 						objeto.remove(i);
 						fase.contadorLadrillo--;
 					}
+				}
+				else {
+					Explosion e=new Explosion(this);
+					e.setX(m.getX()+20);
+					e.setY(m.getY());
+					explosion.add(e);
+					objeto.remove(i);
+					fase.contadorLadrillo--;
 				}
 			}
 			else {
@@ -299,7 +306,7 @@ public class Arkanoid extends Canvas implements Stage {
 			} catch (InterruptedException e) {
 				
 			}
-			if (fase.contadorLadrillo<=0 && nuevaFase==false) {
+			if (fase.contadorLadrillo<=29 && nuevaFase==false) {
 				nuevaFase=true;
 				JOptionPane.showMessageDialog(null, "¡Doc! Hay que ir de regreso al futuro a por una nueva fase");
 				explosion.clear();
