@@ -65,6 +65,8 @@ public class Arkanoid extends Canvas implements Stage {
 	JPanel panel;
 	JFrame ventana;
 	private boolean arreglarAnimacion=false ;
+	Pildora pildora = new Pildora(this);
+	public static boolean matricula=false;
 	
 	public Arkanoid() {
 		
@@ -141,7 +143,6 @@ public class Arkanoid extends Canvas implements Stage {
 	public void updateWorld() {
 		
 		
-		
 		if ((pelota.getVx()==0 && pelota.getVy()==0)) {
 	    	  pelota.setX(nave.getX()+40);
 			  pelota.setY(nave.getY()-pelota.getHeight());
@@ -155,7 +156,10 @@ public class Arkanoid extends Canvas implements Stage {
 		
 		while ( i < objeto.size()) {
 			ObjetosEnPantalla m = (ObjetosEnPantalla)objeto.get(i);
-			if (m.isMarkedForRemoval()) {
+			if(m instanceof Pildora && m.isMarkedForRemoval()) {
+				objeto.remove(i);
+			}
+			else if (m.isMarkedForRemoval()) {
 				if(m instanceof Pelota) {
 					Explosion e=new Explosion(this);
 					e.setX(m.getX()+20);
@@ -185,6 +189,28 @@ public class Arkanoid extends Canvas implements Stage {
 						explosion.add(e);
 						objeto.remove(i);
 						fase.contadorLadrillo--;
+						pildora.probabilidad();
+						if(pildora.numeroProbabilidad>7) {
+							pildora.tipoPildora();
+							if(pildora.numeroPildora==0) {
+								PildoraBarraLarga pildoraBarra = new PildoraBarraLarga(this, 0);
+								pildoraBarra.setX(m.getX()+25);
+								pildoraBarra.setY(m.getY());
+								objeto.add(pildoraBarra);
+							}
+							if(pildora.numeroPildora==1) {
+								PildoraBarraPequeña pildoraBarra = new PildoraBarraPequeña(this, 0);
+								pildoraBarra.setX(m.getX()+25);
+								pildoraBarra.setY(m.getY());
+								objeto.add(pildoraBarra);
+							}
+							if(pildora.numeroPildora==2) {
+								PildoraCambiarFase pildoraBarra = new PildoraCambiarFase(this, 0);
+								pildoraBarra.setX(m.getX()+25);
+								pildoraBarra.setY(m.getY());
+								objeto.add(pildoraBarra);
+							}
+						}
 					}
 				}
 				else {
@@ -199,6 +225,7 @@ public class Arkanoid extends Canvas implements Stage {
 			else {
 				m.act();
 				i++;
+				
 			}
 			
 			if(bolaBorrada) {
@@ -220,6 +247,7 @@ public class Arkanoid extends Canvas implements Stage {
 			ObjetosEnPantalla m=(ObjetosEnPantalla)explosion.get(i);
 			m.act();
 		}
+		
 	}
 	
 	public void checkCollisions() {
@@ -306,9 +334,9 @@ public class Arkanoid extends Canvas implements Stage {
 			} catch (InterruptedException e) {
 				
 			}
-			if (fase.contadorLadrillo<=29 && nuevaFase==false) {
+			if ((fase.contadorLadrillo<=0 && nuevaFase==false) || matricula) {
 				nuevaFase=true;
-				JOptionPane.showMessageDialog(null, "Â¡Doc! Hay que ir de regreso al futuro a por una nueva fase");
+				JOptionPane.showMessageDialog(null, "¡Doc! Hay que ir de regreso al futuro a por una nueva fase");
 				explosion.clear();
 				objeto.clear();
 				//arreglarAnimacion=false;
@@ -317,8 +345,10 @@ public class Arkanoid extends Canvas implements Stage {
 					updateWorld();
 					paintWorld();
 				}
+				nave = new Nave(this);
 				fase= new Fase02();
 				initWorld();
+				matricula=false;
 			}
 			else {
 				

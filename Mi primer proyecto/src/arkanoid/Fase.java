@@ -25,4 +25,14 @@ public abstract class Fase {
 	public String getNombreSonidoInicio () {
 		return "";
 	}
+
+	public int getContadorLadrillo() {
+		return contadorLadrillo;
+	}
+
+	public void setContadorLadrillo(int contadorLadrillo) {
+		this.contadorLadrillo = contadorLadrillo;
+	}
+	
+	
 }

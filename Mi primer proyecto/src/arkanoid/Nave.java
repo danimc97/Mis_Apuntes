@@ -10,12 +10,23 @@ public class Nave extends ObjetosEnPantalla {
 	protected static int vx;
 	private static boolean left;
 	private static boolean right;
-	protected String nombre[]=new String [] {"delorean1.png"};
-		
+	protected String nombre[]=new String [] {"delorean1.png","deloreanLargo.png","deloreanPequeño.png"};
 	
 	public Nave(Stage stage) {
 		super(stage);
-		setSpriteName(nombre);
+		String name[]=new String[] {nombre[0]};
+    	setSpriteName(name);
+	}
+	
+	public void collision(ObjetosEnPantalla a) {
+        if (a instanceof PildoraBarraLarga) {
+        	String name[]=new String[] {nombre[1]};
+        	setSpriteName(name);
+        }
+        if (a instanceof PildoraBarraPequeña) {
+        	String name[]=new String[] {nombre[2]};
+        	setSpriteName(name);
+        }        
 	}
 	
 	public void act() {
