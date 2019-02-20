@@ -50,12 +50,72 @@ public class LadrilloConMovimiento extends ObjetosEnPantalla {
 	        	remove();
 	        	stage.getSoundCache().playSound("8-bit-explosion.wav");
 	        }
+	        if(a instanceof Nave) {
+	        	chocaCoche((Nave)a);
+	        }
 		}
 		else {
 			stage.getSoundCache().playSound("Arkanoid-SFX-05.wav");	
 		}
 		
      }
+	
+	public void chocaCoche(Nave a) {
+		Rectangle rectanguloAbajo= new Rectangle(a.x, a.y+a.height-1, a.width, 1);
+    	Rectangle rectanguloArriba= new Rectangle(a.x, a.y+1, a.width, 1);
+    	Rectangle rectanguloDerecha= new Rectangle(a.x+a.width-1, a.y, 1, a.height);
+    	Rectangle rectanguloIzquierda= new Rectangle(a.x, a.y, 1, a.height);
+    	
+    	
+    	if (this.getBounds().intersects(rectanguloIzquierda)&& this.getBounds().intersects(rectanguloAbajo)) {
+    		this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
+    	}
+    	else {
+    		if (this.getBounds().intersects(rectanguloDerecha)&& this.getBounds().intersects(rectanguloAbajo)) {
+    			this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
+        	}
+    		else {
+    			if (this.getBounds().intersects(rectanguloDerecha)&& this.getBounds().intersects(rectanguloArriba)) {
+    				this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
+            	}
+    			else {
+    				if (this.getBounds().intersects(rectanguloIzquierda)&& this.getBounds().intersects(rectanguloArriba)) {
+    					this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
+    	        	}
+    				else {
+    	
+				    	if (this.getBounds().intersects(rectanguloIzquierda)) {
+				    		this.trayectoria.reflejarHorizontalmenteRespectoAPunto(this.coordenadas);
+				    		
+				    		
+				    	}
+				    	else {
+				    	
+					    	if (this.getBounds().intersects(rectanguloDerecha)) {
+					    		this.trayectoria.reflejarHorizontalmenteRespectoAPunto(this.coordenadas);
+					    		
+					    	}
+					    	else {
+					    	
+						    	if (this.getBounds().intersects(rectanguloArriba)) {
+						    		this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
+						    		
+						    	}
+						    	else {
+							    	
+							    	if (this.getBounds().intersects(rectanguloAbajo)) {
+							    		this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
+							    		
+							    	}
+						    	}
+					    	}
+				    	}
+			    	}
+		    	}
+	    	}
+    	}
+		    
+	}
 	
 	public void act() {
 		millisactuales=System.currentTimeMillis();
@@ -76,10 +136,10 @@ public class LadrilloConMovimiento extends ObjetosEnPantalla {
 			if (x < 0 || x > Stage.WIDTH-64) {
 				this.trayectoria.reflejarHorizontalmenteRespectoAPunto(coordenadas);
 			}
-			if (y > Stage.HEIGHT-350) {
+			if (y > Stage.HEIGHT-100) {
 				this.trayectoria.reflejarVerticalmenteRespectoAPunto(coordenadas);
-				}
 			}
+		}
 			if (y<0) {
 				this.trayectoria.reflejarVerticalmenteRespectoAPunto(coordenadas);
 			}

@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 
 public class Ladrillo extends ObjetosEnPantalla {
 	
-	protected String nombre[]=new String [] {"ladrillo-amarillo.jpg","ladrillo-azul.jpg","ladrillo-rojo.jpg","ladrillo-verde.jpg","fase.jpg","perderlapartida.jpg","victoria.png"};
+	protected String nombre[]=new String [] {"ladrilloamarillo .jpg","ladrilloazul .jpg","ladrillorojo .jpg","ladrilloverde .jpg","fase.jpg","perderlapartida.jpg","victoria.png"};
 	
 	int codigoLadrilloAmarillo;
 	boolean dosVidas=false;

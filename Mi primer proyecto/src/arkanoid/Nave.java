@@ -10,7 +10,7 @@ public class Nave extends ObjetosEnPantalla {
 	protected static int vx;
 	private static boolean left;
 	private static boolean right;
-	protected String nombre[]=new String [] {"delorean1.png","deloreanLargo.png","deloreanPequeño.png"};
+	protected String nombre[]=new String [] {"delorean1.png","deloreanLargo.png","deloreanPequeÃ±o.png"};
 	
 	public Nave(Stage stage) {
 		super(stage);
@@ -23,9 +23,12 @@ public class Nave extends ObjetosEnPantalla {
         	String name[]=new String[] {nombre[1]};
         	setSpriteName(name);
         }
-        if (a instanceof PildoraBarraPequeña) {
+        if (a instanceof PildoraBarraPequeÃ±a) {
         	String name[]=new String[] {nombre[2]};
         	setSpriteName(name);
+        }
+        if (a instanceof LadrilloConMovimiento) {
+        	Arkanoid.contadorVidas--;
         }
 	}
 	

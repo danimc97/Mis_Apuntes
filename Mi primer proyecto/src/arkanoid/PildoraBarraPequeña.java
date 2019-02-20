@@ -1,12 +1,12 @@
 package arkanoid;
 
-public class PildoraBarraPequeña extends Pildora {
+public class PildoraBarraPequeÃ±a extends Pildora {
 
 	
 	protected String nombre[]=new String [] {"cabezaDoc.png"};
 	
 	
-	public PildoraBarraPequeña(Stage stage,int pildora) {
+	public PildoraBarraPequeÃ±a(Stage stage,int pildora) {
 		super(stage);
 		String name[]=new String[] {"cabezaDoc.png"};
 		setSpriteName(name);

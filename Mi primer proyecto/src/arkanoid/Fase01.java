@@ -30,7 +30,7 @@ public class Fase01 extends Fase {
 				Ladrillo ladrillo = new Ladrillo(stage,mapa[j][i]);
 				ladrillo.setX(5+i*63);
 				ladrillo.setY(j*23);
-				if (j > 0) {
+				if (mapa[j][i] != 0) {
 					contadorLadrillo++;
 				}
 				actores.add(ladrillo);

@@ -67,7 +67,7 @@ public class Arkanoid extends Canvas implements Stage {
 	private boolean arreglarAnimacion=false ;
 	Pildora pildora = new Pildora(this);
 	public static boolean matricula=false;
-	Fase faseActiva[] = new Fase[] {new Fase01(),new Fase02(),new Fase03()};
+	Fase faseActiva[] = new Fase[] {new Fase03(),new Fase02(),new Fase03()};
 	private int contadorFase=0;
 	private int FinalFase=0;
 	private int limitePildoras=0;
@@ -140,7 +140,7 @@ public class Arkanoid extends Canvas implements Stage {
 			  pelota.setY(nave.getY()-pelota.getHeight());
 	      }
 	      
-	       // Preparación de la primera fase
+	       // Preparaciï¿½n de la primera fase
 	        this.fase = faseActiva[contadorFase];
 	        this.fase.inicializaFase(this);
 	        this.objeto.clear();
@@ -205,7 +205,7 @@ public class Arkanoid extends Canvas implements Stage {
 						objeto.remove(i);
 						fase.contadorLadrillo--;
 						pildora.probabilidad();
-						if(pildora.numeroProbabilidad>8 && limitePildoras<=6) {
+						if(pildora.numeroProbabilidad>8 && limitePildoras<6) {
 							pildora.tipoPildora();
 							if(pildora.numeroPildora==0) {
 								limitePildoras++;
@@ -216,7 +216,7 @@ public class Arkanoid extends Canvas implements Stage {
 							}
 							if(pildora.numeroPildora==1) {
 								limitePildoras++;
-								PildoraBarraPequeña pildoraBarra = new PildoraBarraPequeña(this, 0);
+								PildoraBarraPequeÃ±a pildoraBarra = new PildoraBarraPequeÃ±a(this, 0);
 								pildoraBarra.setX(m.getX()+25);
 								pildoraBarra.setY(m.getY());
 								objeto.add(pildoraBarra);
@@ -370,7 +370,7 @@ public class Arkanoid extends Canvas implements Stage {
 				FinalFase++;
 				nuevaFase=true;
 				if(FinalFase<3) {
-					JOptionPane.showMessageDialog(null, "¡Doc! Hay que ir de regreso al futuro a por una nueva fase");
+					JOptionPane.showMessageDialog(null, "Â¡Doc! Hay que ir de regreso al futuro a por una nueva fase");
 					explosion.clear();
 					objeto.clear();
 					//arreglarAnimacion=false;
@@ -383,6 +383,7 @@ public class Arkanoid extends Canvas implements Stage {
 					contadorFase++;
 					matricula=false;
 					contadorVidas++;
+					limitePildoras=0;
 					initWorld();
 				}
 				else {
