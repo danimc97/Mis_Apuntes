@@ -22,6 +22,6 @@ public class Fase03 extends Fase {
 		LadrilloConMovimiento ladrillo = new LadrilloConMovimiento(stage,6);
 		actores.add(ladrillo);
 		contadorLadrillo++;
-		JOptionPane.showMessageDialog(null, "¡Marty, me las pagarás!");
+		JOptionPane.showMessageDialog(null, "Â¡Marty, me las pagarÃ¡s!");
 	}
 }
