@@ -26,7 +26,7 @@ public class Nave extends ObjetosEnPantalla {
         if (a instanceof PildoraBarraPequeña) {
         	String name[]=new String[] {nombre[2]};
         	setSpriteName(name);
-        }        
+        }
 	}
 	
 	public void act() {

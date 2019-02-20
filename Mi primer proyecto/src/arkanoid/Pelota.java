@@ -44,6 +44,9 @@ public class Pelota extends ObjetosEnPantalla {
         if (a instanceof Ladrillo) {
         	chocaLadrillo((Ladrillo)a);
         }
+        if (a instanceof LadrilloConMovimiento) {
+        	chocaLadrillo((LadrilloConMovimiento)a);
+        }
         if (a instanceof Nave) {
         	chocaCoche((Nave)a);
         }
@@ -51,6 +54,70 @@ public class Pelota extends ObjetosEnPantalla {
 	
 	
 	public void chocaLadrillo(Ladrillo a) {
+		Rectangle rectanguloAbajo= new Rectangle(a.x, a.y+a.height-1, a.width, 1);
+    	Rectangle rectanguloArriba= new Rectangle(a.x, a.y+1, a.width, 1);
+    	Rectangle rectanguloDerecha= new Rectangle(a.x+a.width-1, a.y, 1, a.height);
+    	Rectangle rectanguloIzquierda= new Rectangle(a.x, a.y, 1, a.height);
+    	
+    	if (this.getBounds().intersects(rectanguloIzquierda)&& this.getBounds().intersects(rectanguloAbajo)) {
+    		this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
+    		//this.trayectoria= new TrayectoriaRecta(2.5f, coordenadas, false);
+    		//System.out.println("Esquina izquierda inferior");
+    	}
+    	else {
+    		if (this.getBounds().intersects(rectanguloDerecha)&& this.getBounds().intersects(rectanguloAbajo)) {
+    			this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
+    			//System.out.println("Esquina derecha inferior");
+        	}
+    		else {
+    			if (this.getBounds().intersects(rectanguloIzquierda)&& this.getBounds().intersects(rectanguloArriba)) {
+    				this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
+    				//System.out.println("Esquina izquierda superior");
+            	}
+    			else {
+    				if (this.getBounds().intersects(rectanguloDerecha)&& this.getBounds().intersects(rectanguloArriba)) {
+    					this.trayectoria.modificarPendiente(this.trayectoria.m, coordenadas, !this.trayectoria.direccionCreciente);
+    					//System.out.println("Esquina derecha superior");
+    	        	}
+    				else {
+    	
+				    	if (this.getBounds().intersects(rectanguloIzquierda)) {
+				    		this.trayectoria.reflejarHorizontalmenteRespectoAPunto(this.coordenadas);
+				    		
+				    		//System.out.println("Izquierda");
+				    	}
+				    	else {
+				    	
+					    	if (this.getBounds().intersects(rectanguloDerecha)) {
+					    		this.trayectoria.reflejarHorizontalmenteRespectoAPunto(this.coordenadas);
+					    		
+					    		//System.out.println("Derecha");
+					    	}
+					    	else {
+					    	
+						    	if (this.getBounds().intersects(rectanguloArriba)) {
+						    		this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
+						    		
+						    		//System.out.println("Arriba");
+						    	}
+						    	else {
+							    	
+							    	if (this.getBounds().intersects(rectanguloAbajo)) {
+							    		this.trayectoria.reflejarVerticalmenteRespectoAPunto(this.coordenadas);
+							    		
+							    		//System.out.println("Abajo");
+							    	}
+						    	}
+					    	}
+				    	}
+			    	}
+		    	}
+	    	}
+    	}
+		    
+	}
+	
+	public void chocaLadrillo(LadrilloConMovimiento a) {
 		Rectangle rectanguloAbajo= new Rectangle(a.x, a.y+a.height-1, a.width, 1);
     	Rectangle rectanguloArriba= new Rectangle(a.x, a.y+1, a.width, 1);
     	Rectangle rectanguloDerecha= new Rectangle(a.x+a.width-1, a.y, 1, a.height);

@@ -4,10 +4,11 @@ import java.awt.Rectangle;
 
 public class Ladrillo extends ObjetosEnPantalla {
 	
-	protected String nombre[]=new String [] {"ladrillo-amarillo.jpg","ladrillo-azul.jpg","ladrillo-rojo.jpg","ladrillo-verde.jpg","fase.jpg","perderlapartida.jpg"};
+	protected String nombre[]=new String [] {"ladrillo-amarillo.jpg","ladrillo-azul.jpg","ladrillo-rojo.jpg","ladrillo-verde.jpg","fase.jpg","perderlapartida.jpg","victoria.png"};
 	
 	int codigoLadrilloAmarillo;
 	boolean dosVidas=false;
+	
 	
 	public Ladrillo(Stage stage, int colorLadrillos) {
 		super(stage);
@@ -15,7 +16,7 @@ public class Ladrillo extends ObjetosEnPantalla {
 		setSpriteName(name);
 		this.codigoLadrilloAmarillo=colorLadrillos;
 		if(colorLadrillos==3) {
-		dosVidas=true;
+			dosVidas=true;
 		}
 	}
 	

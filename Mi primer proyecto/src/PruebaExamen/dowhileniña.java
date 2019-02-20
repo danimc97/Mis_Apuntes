@@ -1,6 +1,6 @@
 package PruebaExamen;
 
-public class dowhileniÃ±a {
+public class dowhileniña {
 
 	public static void main(String[] args) {
 		

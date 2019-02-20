@@ -67,6 +67,10 @@ public class Arkanoid extends Canvas implements Stage {
 	private boolean arreglarAnimacion=false ;
 	Pildora pildora = new Pildora(this);
 	public static boolean matricula=false;
+	Fase faseActiva[] = new Fase[] {new Fase01(),new Fase02(),new Fase03()};
+	private int contadorFase=0;
+	private int FinalFase=0;
+	private int limitePildoras=0;
 	
 	public Arkanoid() {
 		
@@ -128,8 +132,6 @@ public class Arkanoid extends Canvas implements Stage {
 		  
 	      
 	      soundCache.loopSound("Regreso Al Futuro.wav");
-	      
-	      
 	      fase.inicializaFase(this);
 	      objeto.addAll(fase.actores);
 	      
@@ -137,11 +139,24 @@ public class Arkanoid extends Canvas implements Stage {
 	    	  pelota.setX(nave.getX()+40);
 			  pelota.setY(nave.getY()-pelota.getHeight());
 	      }
+	      
+	       // Preparación de la primera fase
+	        this.fase = faseActiva[contadorFase];
+	        this.fase.inicializaFase(this);
+	        this.objeto.clear();
+	        this.objeto.addAll(this.fase.getActores());
+	        this.objeto.add(this.nave);
+	        this.objeto.add(this.pelota);
 	}
 	
 	
 	public void updateWorld() {
 		
+		if(pelota.novojogo) {
+			String name[]=new String[] {nave.nombre[0]};
+        	nave.setSpriteName(name);
+        	pelota.novojogo=true;
+		}
 		
 		if ((pelota.getVx()==0 && pelota.getVy()==0)) {
 	    	  pelota.setX(nave.getX()+40);
@@ -190,27 +205,44 @@ public class Arkanoid extends Canvas implements Stage {
 						objeto.remove(i);
 						fase.contadorLadrillo--;
 						pildora.probabilidad();
-						if(pildora.numeroProbabilidad>7) {
+						if(pildora.numeroProbabilidad>8 && limitePildoras<=6) {
 							pildora.tipoPildora();
 							if(pildora.numeroPildora==0) {
+								limitePildoras++;
 								PildoraBarraLarga pildoraBarra = new PildoraBarraLarga(this, 0);
 								pildoraBarra.setX(m.getX()+25);
 								pildoraBarra.setY(m.getY());
 								objeto.add(pildoraBarra);
 							}
 							if(pildora.numeroPildora==1) {
+								limitePildoras++;
 								PildoraBarraPequeña pildoraBarra = new PildoraBarraPequeña(this, 0);
 								pildoraBarra.setX(m.getX()+25);
 								pildoraBarra.setY(m.getY());
 								objeto.add(pildoraBarra);
 							}
 							if(pildora.numeroPildora==2) {
+								limitePildoras++;
 								PildoraCambiarFase pildoraBarra = new PildoraCambiarFase(this, 0);
 								pildoraBarra.setX(m.getX()+25);
 								pildoraBarra.setY(m.getY());
 								objeto.add(pildoraBarra);
 							}
 						}
+					}
+				}
+				else if(m instanceof LadrilloConMovimiento) {
+					if(((LadrilloConMovimiento)m).diezVidas<100) {
+						((LadrilloConMovimiento)objeto.get(i)).diezVidas++;
+						objeto.get(i).setMarkedForRemoval(false);
+					}
+					else {
+						Explosion e=new Explosion(this);
+						e.setX(m.getX()+20);
+						e.setY(m.getY());
+						explosion.add(e);
+						objeto.remove(i);
+						fase.contadorLadrillo--;
 					}
 				}
 				else {
@@ -334,21 +366,31 @@ public class Arkanoid extends Canvas implements Stage {
 			} catch (InterruptedException e) {
 				
 			}
-			if ((fase.contadorLadrillo<=0 && nuevaFase==false) || matricula) {
+			if ((fase.contadorLadrillo<=0) || matricula) {
+				FinalFase++;
 				nuevaFase=true;
-				JOptionPane.showMessageDialog(null, "¡Doc! Hay que ir de regreso al futuro a por una nueva fase");
-				explosion.clear();
-				objeto.clear();
-				//arreglarAnimacion=false;
-				objeto.add(new Animacion (this));
-				while(objeto.isEmpty()==false) {
-					updateWorld();
-					paintWorld();
+				if(FinalFase<3) {
+					JOptionPane.showMessageDialog(null, "¡Doc! Hay que ir de regreso al futuro a por una nueva fase");
+					explosion.clear();
+					objeto.clear();
+					//arreglarAnimacion=false;
+					objeto.add(new Animacion (this));
+					while(objeto.isEmpty()==false) {
+						updateWorld();
+						paintWorld();
+					}
+					nave = new Nave(this);
+					contadorFase++;
+					matricula=false;
+					contadorVidas++;
+					initWorld();
 				}
-				nave = new Nave(this);
-				fase= new Fase02();
-				initWorld();
-				matricula=false;
+				else {
+					explosion.clear();
+					objeto.clear();
+					Ladrillo ladrillo= new Ladrillo(this,6);
+					objeto.add(ladrillo);
+				}
 			}
 			else {
 				

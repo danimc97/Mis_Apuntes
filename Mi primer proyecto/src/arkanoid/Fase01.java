@@ -18,18 +18,26 @@ public class Fase01 extends Fase {
 	@Override
 	public void inicializaFase(Stage stage) {
 		
-		for (int j=0;j<4;j++) {
-	    	  for (int i=0;i<10;i++) {
-	    		  Ladrillo ladrillo=new Ladrillo(stage,j);
-	    		  ladrillo.setX(5+i*63);
-	    		  ladrillo.setY(j*23);
-	    		  if (j!=0) {
-	    			  contadorLadrillo++;
-	    		  }
-	    		  actores.add(ladrillo);
-	    	  }
-	      }
+		int mapa[][] = new int[][] { 
+			{ 1, 1, 3, 3, 3, 3, 3, 3, 1, 1 },
+			{ 2, 2, 1, 1, 1, 1, 1, 1, 2, 2 },
+			{ 3, 3, 2, 2, 2, 2, 2, 2, 3, 3 },
+			{ 1, 1, 3, 3, 3, 3, 3, 3, 1, 1 }};
+		
+
+		for (int j = 0; j < 4; j++) {
+			for (int i = 0; i < 10; i++) {
+				Ladrillo ladrillo = new Ladrillo(stage,mapa[j][i]);
+				ladrillo.setX(5+i*63);
+				ladrillo.setY(j*23);
+				if (j > 0) {
+					contadorLadrillo++;
+				}
+				actores.add(ladrillo);
+			}
+		}
 		
 	}
 
 }
+
