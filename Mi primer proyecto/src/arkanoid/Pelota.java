@@ -277,7 +277,7 @@ public class Pelota extends ObjetosEnPantalla {
 				this.trayectoria = new TrayectoriaRecta(-2.5f, coordenadas, true);
 			}
 			this.coordenadas = this.trayectoria.getPuntoADistanciaDePunto(this.coordenadas, pixelsPorFrame);
-			if (pixelsPorFrame < 9) {
+			if (pixelsPorFrame < 4) {
 				pixelsPorFrame *= 1.00035;
 			}
 			this.x = Math.round(this.coordenadas.x);

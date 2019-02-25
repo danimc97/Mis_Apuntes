@@ -152,7 +152,7 @@ public class Arkanoid extends Canvas implements Stage {
 	
 	public void updateWorld() {
 		
-		//nave.setX(pelota.getX()-50);
+		nave.setX(pelota.getX()-50);
 		
 		if(pelota.novojogo) {
 			String name[]=new String[] {nave.nombre[0]};
@@ -207,7 +207,7 @@ public class Arkanoid extends Canvas implements Stage {
 						objeto.remove(i);
 						fase.contadorLadrillo--;
 						pildora.probabilidad();
-						if(pildora.numeroProbabilidad>8 && limitePildoras<6) {
+						if(pildora.numeroProbabilidad>1 && limitePildoras<1000000) {
 							pildora.tipoPildora();
 							if(pildora.numeroPildora==0) {
 								limitePildoras++;
