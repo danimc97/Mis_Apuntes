@@ -18,5 +18,4 @@ public class EjercicioEcuacion2Grado {
 	    System.out.println("La ecuacion de segundo grado positiva es: "+negativa);
 
 	}
-
 }
