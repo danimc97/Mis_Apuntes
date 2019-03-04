@@ -23,7 +23,7 @@ public class Nave extends ObjetosEnPantalla {
         	String name[]=new String[] {nombre[1]};
         	setSpriteName(name);
         }
-        if (a instanceof PildoraBarraPequeÃ±a) {
+        if (a instanceof PildoraBarraPequeña) {
         	String name[]=new String[] {nombre[2]};
         	setSpriteName(name);
         }

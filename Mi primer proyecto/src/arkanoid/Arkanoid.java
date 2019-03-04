@@ -67,7 +67,7 @@ public class Arkanoid extends Canvas implements Stage {
 	private boolean arreglarAnimacion=false ;
 	Pildora pildora = new Pildora(this);
 	public static boolean matricula=false;
-	Fase faseActiva[] = new Fase[] {new Fase03(),new Fase02(),new Fase03()};
+	Fase faseActiva[] = new Fase[] {new Fase01(),new Fase02(),new Fase03()};
 	private int contadorFase=0;
 	private int FinalFase=0;
 	private int limitePildoras=0;
@@ -218,7 +218,7 @@ public class Arkanoid extends Canvas implements Stage {
 							}
 							if(pildora.numeroPildora==1) {
 								limitePildoras++;
-								PildoraBarraPequeÃ±a pildoraBarra = new PildoraBarraPequeÃ±a(this, 0);
+								PildoraBarraPequeña pildoraBarra = new PildoraBarraPequeña(this, 0);
 								pildoraBarra.setX(m.getX()+25);
 								pildoraBarra.setY(m.getY());
 								objeto.add(pildoraBarra);
