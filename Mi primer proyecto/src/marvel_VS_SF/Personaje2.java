@@ -17,7 +17,7 @@ public class Personaje2 extends Personaje {
 	public Personaje2() {
 		super();
 		this.setId(1);
-		this.setNombre("Chumlee");
+		this.setNombre("Chun-Li");
 		this.setVida(100);
 		this.setFuerza(60);	
 	}
@@ -56,6 +56,7 @@ public class Personaje2 extends Personaje {
 					System.out.println(this.getNombre()+" ha dado una patada a "+Personaje1.getInstancia().getNombre());
 				}
 				else {
+					System.out.println(this.getNombre()+" ha dado una patada a "+Personaje1.getInstancia().getNombre());
 					System.out.println(Personaje1.getInstancia().getNombre()+" se ha defendido de la patada");
 				}
 			}
@@ -67,6 +68,7 @@ public class Personaje2 extends Personaje {
 					System.out.println(this.getNombre()+" ha dado un puñetazo a "+Personaje1.getInstancia().getNombre());
 				}
 				else {
+					System.out.println(this.getNombre()+" ha dado un puñetazo a "+Personaje1.getInstancia().getNombre());
 					System.out.println(Personaje1.getInstancia().getNombre()+" se ha defendido del puñetazo");
 				}
 			}
@@ -78,6 +80,7 @@ public class Personaje2 extends Personaje {
 					System.out.println(this.getNombre()+" ha realizado un ataque especial a "+Personaje1.getInstancia().getNombre());
 				}
 				else {
+					System.out.println(this.getNombre()+" ha realizado un ataque especial a "+Personaje1.getInstancia().getNombre());
 					System.out.println(Personaje1.getInstancia().getNombre()+" se ha defendido del ataque especial");
 				}
 			}

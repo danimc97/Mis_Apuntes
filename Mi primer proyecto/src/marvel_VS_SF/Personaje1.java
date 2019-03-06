@@ -56,6 +56,7 @@ public class Personaje1 extends Personaje {
 					System.out.println(this.getNombre()+" ha dado una patada a "+Personaje2.getInstancia().getNombre());
 				}
 				else {
+					System.out.println(this.getNombre()+" ha dado una patada a "+Personaje2.getInstancia().getNombre());
 					System.out.println(Personaje2.getInstancia().getNombre()+" se ha defendido de la patada");
 				}
 			}
@@ -67,6 +68,7 @@ public class Personaje1 extends Personaje {
 					System.out.println(this.getNombre()+" ha dado un puñetazo a "+Personaje2.getInstancia().getNombre());
 				}
 				else {
+					System.out.println(this.getNombre()+" ha dado un puñetazo a "+Personaje2.getInstancia().getNombre());
 					System.out.println(Personaje2.getInstancia().getNombre()+" se ha defendido del puñetazo");
 				}
 				
@@ -79,6 +81,7 @@ public class Personaje1 extends Personaje {
 					System.out.println(this.getNombre()+" ha realizado un ataque especial a "+Personaje2.getInstancia().getNombre());
 				}
 				else {
+					System.out.println(this.getNombre()+" ha realizado un ataque especial a "+Personaje2.getInstancia().getNombre());
 					System.out.println(Personaje2.getInstancia().getNombre()+" se ha defendido del ataque especial");
 				}
 			}
