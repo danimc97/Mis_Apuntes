@@ -4,6 +4,6 @@ public class Ataque_Especial extends Ataque {
 
 	public Ataque_Especial() {
 		super();
-		this.setDaño(20);
+		this.setDanio(20);
 	}
 }

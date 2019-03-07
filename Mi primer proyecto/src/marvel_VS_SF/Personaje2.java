@@ -52,7 +52,7 @@ public class Personaje2 extends Personaje {
 			if (lista_ataque_personaje2.get(i) instanceof Patada) {
 				probabilidad=(int) (Math.round(Math.random()*99)+1);
 				if(probabilidad<75) {
-					Personaje1.getInstancia().setVida(Personaje1.getInstancia().getVida()-patada.getDaño());
+					Personaje1.getInstancia().setVida(Personaje1.getInstancia().getVida()-patada.getDanio());
 					System.out.println(this.getNombre()+" ha dado una patada a "+Personaje1.getInstancia().getNombre());
 				}
 				else {
@@ -64,19 +64,19 @@ public class Personaje2 extends Personaje {
 			if (lista_ataque_personaje2.get(i) instanceof Punetazo) {
 				probabilidad=(int) (Math.round(Math.random()*99)+1);
 				if(probabilidad<75) {
-					Personaje1.getInstancia().setVida(Personaje1.getInstancia().getVida()-punetazo.getDaño());
-					System.out.println(this.getNombre()+" ha dado un puñetazo a "+Personaje1.getInstancia().getNombre());
+					Personaje1.getInstancia().setVida(Personaje1.getInstancia().getVida()-punetazo.getDanio());
+					System.out.println(this.getNombre()+" ha dado un puï¿½etazo a "+Personaje1.getInstancia().getNombre());
 				}
 				else {
-					System.out.println(this.getNombre()+" ha dado un puñetazo a "+Personaje1.getInstancia().getNombre());
-					System.out.println(Personaje1.getInstancia().getNombre()+" se ha defendido del puñetazo");
+					System.out.println(this.getNombre()+" ha dado un puï¿½etazo a "+Personaje1.getInstancia().getNombre());
+					System.out.println(Personaje1.getInstancia().getNombre()+" se ha defendido del puï¿½etazo");
 				}
 			}
 			
 			if (lista_ataque_personaje2.get(i) instanceof Ataque_Especial) {
 				probabilidad=(int) (Math.round(Math.random()*99)+1);
 				if(probabilidad<75) {
-					Personaje1.getInstancia().setVida(Personaje1.getInstancia().getVida()-ataque_especial.getDaño());
+					Personaje1.getInstancia().setVida(Personaje1.getInstancia().getVida()-ataque_especial.getDanio());
 					System.out.println(this.getNombre()+" ha realizado un ataque especial a "+Personaje1.getInstancia().getNombre());
 				}
 				else {

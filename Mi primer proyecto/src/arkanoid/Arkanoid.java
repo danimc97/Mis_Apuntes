@@ -218,7 +218,7 @@ public class Arkanoid extends Canvas implements Stage {
 							}
 							if(pildora.numeroPildora==1) {
 								limitePildoras++;
-								PildoraBarraPequeña pildoraBarra = new PildoraBarraPequeña(this, 0);
+								PildoraBarraPequenia pildoraBarra = new PildoraBarraPequenia(this, 0);
 								pildoraBarra.setX(m.getX()+25);
 								pildoraBarra.setY(m.getY());
 								objeto.add(pildoraBarra);

@@ -2,23 +2,23 @@ package marvel_VS_SF;
 
 public class Ataque {
 
-	private int daño;
+	private int danio;
 
 	public Ataque() {
 		super();
 	}
 
-	public Ataque(int daño) {
+	public Ataque(int danio) {
 		super();
-		this.daño = daño;
+		this.danio = danio;
 	}
 
-	public int getDaño() {
-		return daño;
+	public int getDanio() {
+		return danio;
 	}
 
-	public void setDaño(int daño) {
-		this.daño = daño;
+	public void setDanio(int danio) {
+		this.danio = danio;
 	}
 	
 	

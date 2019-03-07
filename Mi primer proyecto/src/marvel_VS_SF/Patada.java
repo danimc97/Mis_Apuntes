@@ -4,7 +4,7 @@ public class Patada extends Ataque {
 
 	public Patada() {
 		super();
-		this.setDaño(10);
+		this.setDanio(10);
 	}
 	
 }

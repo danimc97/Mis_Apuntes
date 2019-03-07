@@ -52,7 +52,7 @@ public class Personaje1 extends Personaje {
 			if (lista_ataque_personaje1.get(i) instanceof Patada) {
 				probabilidad=(int) (Math.round(Math.random()*99)+1);
 				if(probabilidad<75) {
-					Personaje2.getInstancia().setVida(Personaje2.getInstancia().getVida()-patada.getDaño());
+					Personaje2.getInstancia().setVida(Personaje2.getInstancia().getVida()-patada.getDanio());
 					System.out.println(this.getNombre()+" ha dado una patada a "+Personaje2.getInstancia().getNombre());
 				}
 				else {
@@ -64,12 +64,12 @@ public class Personaje1 extends Personaje {
 			if (lista_ataque_personaje1.get(i) instanceof Punetazo) {
 				probabilidad=(int) (Math.round(Math.random()*99)+1);
 				if(probabilidad<75) {
-					Personaje2.getInstancia().setVida(Personaje2.getInstancia().getVida()-punetazo.getDaño());
-					System.out.println(this.getNombre()+" ha dado un puñetazo a "+Personaje2.getInstancia().getNombre());
+					Personaje2.getInstancia().setVida(Personaje2.getInstancia().getVida()-punetazo.getDanio());
+					System.out.println(this.getNombre()+" ha dado un puï¿½etazo a "+Personaje2.getInstancia().getNombre());
 				}
 				else {
-					System.out.println(this.getNombre()+" ha dado un puñetazo a "+Personaje2.getInstancia().getNombre());
-					System.out.println(Personaje2.getInstancia().getNombre()+" se ha defendido del puñetazo");
+					System.out.println(this.getNombre()+" ha dado un puï¿½etazo a "+Personaje2.getInstancia().getNombre());
+					System.out.println(Personaje2.getInstancia().getNombre()+" se ha defendido del puï¿½etazo");
 				}
 				
 			}
@@ -77,7 +77,7 @@ public class Personaje1 extends Personaje {
 			if (lista_ataque_personaje1.get(i) instanceof Ataque_Especial) {
 				probabilidad=(int) (Math.round(Math.random()*99)+1);
 				if(probabilidad<75) {
-					Personaje2.getInstancia().setVida(Personaje2.getInstancia().getVida()-ataque_especial.getDaño());
+					Personaje2.getInstancia().setVida(Personaje2.getInstancia().getVida()-ataque_especial.getDanio());
 					System.out.println(this.getNombre()+" ha realizado un ataque especial a "+Personaje2.getInstancia().getNombre());
 				}
 				else {

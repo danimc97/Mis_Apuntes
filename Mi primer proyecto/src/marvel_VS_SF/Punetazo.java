@@ -4,6 +4,6 @@ public class Punetazo extends Ataque {
 
 	public Punetazo() {
 		super();
-		this.setDaño(5);
+		this.setDanio(5);
 	}
 }
