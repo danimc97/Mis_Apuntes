@@ -26,6 +26,19 @@ public class EjercicioDateCalendar {
 		
 		System.out.println(fechaCalendar.getTime());
 		
+		
+		fechaCalendar.add(Calendar.DAY_OF_MONTH,3);
+		System.out.println("Ahora mas 3 dias : " + fechaCalendar.getTime());
+		
+		fechaCalendar.add(Calendar.WEEK_OF_YEAR,2);
+		System.out.println("Ahora mas 2 semanas : " + fechaCalendar.getTime());
+		
+		fechaCalendar.add(Calendar.DAY_OF_YEAR,300);
+		System.out.println("Ahora mas 300 dias : " + fechaCalendar.getTime());
+		
+		fechaCalendar.add(Calendar.YEAR,4);
+		System.out.println("Ahora mas 4 años : " + fechaCalendar.getTime());
+		
 	}
 
 }
