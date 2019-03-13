@@ -3,7 +3,9 @@ package marvel_VS_SF;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Personaje2 extends Personaje {
+import ejemploEventos.OrdenadorEvent1;
+
+public class Personaje2 extends Personaje implements DetectaPunetazoListener {
 
 	private static Personaje2 instancia = null;
 	Ataque_Especial ataque_especial = new Ataque_Especial();
@@ -19,7 +21,8 @@ public class Personaje2 extends Personaje {
 		this.setId(1);
 		this.setNombre(EjercicioPropiedades.getProperty("NOMBREPJ2"));
 		this.setVida(100);
-		this.setFuerza(60);	
+		this.setFuerza(60);
+		Principal.addDetectaPunetazoListener(this);
 	}
 
 	@Override
@@ -62,6 +65,8 @@ public class Personaje2 extends Personaje {
 			}
 			
 			if (lista_ataque_personaje2.get(i) instanceof Punetazo) {
+				DetectaPunetazoEvent evento= new DetectaPunetazoEvent();
+				Principal.fireDetectaPunetazoPJ2Event(evento);
 				probabilidad=(int) (Math.round(Math.random()*99)+1);
 				if(probabilidad<75) {
 					Personaje1.getInstancia().setVida(Personaje1.getInstancia().getVida()-punetazo.getDanio());
@@ -93,4 +98,9 @@ public class Personaje2 extends Personaje {
         }
         return instancia;
     }
+
+	@Override
+	public void DetectaPunetazoPJ2(DetectaPunetazoEvent Event) {
+		System.out.println(this.getNombre()+" ha pegado un punetazo(Evento)");
+	}
 }

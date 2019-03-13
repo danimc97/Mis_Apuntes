@@ -1,8 +1,17 @@
 package marvel_VS_SF;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
+import ejemploEventos.OrdenadorEvent1;
+import ejemploEventos.OrdenadorListener2;
+
+
 public class Principal {
+	
+	static List<DetectaPunetazoListener> punetazoListeners = new ArrayList<DetectaPunetazoListener>();
 	
 	public static void main(String[] args) {
 		
@@ -53,5 +62,24 @@ public class Principal {
 		}while (Personaje1.getInstancia().getVida()>0 && Personaje2.getInstancia().getVida()>0);
 		
 	}
-
+	
+	public static void addDetectaPunetazoListener (DetectaPunetazoListener listener) {
+		punetazoListeners.add(listener);
+	}
+	
+	public static void removeDetectaPunetazoListener(DetectaPunetazoListener listener) {
+		punetazoListeners.remove(listener);
+	}
+	
+	public static void fireDetectaPunetazoPJ1Event(DetectaPunetazoEvent evento) {
+		for (DetectaPunetazoListener listener : punetazoListeners) {
+			listener.DetectaPunetazoPJ1(evento);		
+		}
+	}
+	
+	public static void fireDetectaPunetazoPJ2Event(DetectaPunetazoEvent evento) {
+		for (DetectaPunetazoListener listener : punetazoListeners) {
+			listener.DetectaPunetazoPJ2(evento);		
+		}
+	}
 }

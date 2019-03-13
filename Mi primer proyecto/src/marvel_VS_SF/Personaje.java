@@ -1,6 +1,6 @@
 package marvel_VS_SF;
 
-public abstract class Personaje {
+public abstract class Personaje extends DetectaPunetazoAdapter {
 	
 	private int id;
 	
@@ -76,6 +76,7 @@ public abstract class Personaje {
 	public void setFuerza(int fuerza) {
 		this.fuerza = fuerza;
 	}
+
 	
 	
 	

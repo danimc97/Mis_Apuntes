@@ -49,7 +49,7 @@ public class HashMap_Almacen {
 					mostrarListado+=(hm.get(claves1[i])+"\n");
 				}
 				String actualiza=JOptionPane.showInputDialog(mostrarListado);
-				hm.remove(actualiza);
+				//hm.remove(actualiza);
 				String estante1=JOptionPane.showInputDialog("Introduce el nuevo estante: ");	
 				String descripcion1=JOptionPane.showInputDialog("Introduce la nueva descripcion: ");
 				hm.put(actualiza, new Articulo (actualiza,estante1,descripcion1));
