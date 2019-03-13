@@ -26,6 +26,9 @@ public class EjercicioDateCalendar {
 		
 		System.out.println(fechaCalendar.getTime());
 		
+		Date fechaAPartirDeCalendar = new Date(fechaCalendar.getTimeInMillis());
+		System.out.println("Fecha a partir de Calendar con campos individualizados: " + 
+		new SimpleDateFormat ("dd/MM/yyyy HH:mm:ss").format(fechaAPartirDeCalendar));
 		
 		fechaCalendar.add(Calendar.DAY_OF_MONTH,3);
 		System.out.println("Ahora mas 3 dias : " + fechaCalendar.getTime());
@@ -38,6 +41,8 @@ public class EjercicioDateCalendar {
 		
 		fechaCalendar.add(Calendar.YEAR,4);
 		System.out.println("Ahora mas 4 años : " + fechaCalendar.getTime());
+		
+		
 		
 	}
 
