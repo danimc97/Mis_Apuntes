@@ -17,7 +17,7 @@ public class Personaje2 extends Personaje {
 	public Personaje2() {
 		super();
 		this.setId(1);
-		this.setNombre("Chun-Li");
+		this.setNombre(EjercicioPropiedades.getProperty("NOMBREPJ2"));
 		this.setVida(100);
 		this.setFuerza(60);	
 	}

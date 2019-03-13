@@ -23,7 +23,7 @@ public class Principal {
 		
 		Pelea();
 		
-		System.out.println("¡Combate finalizado!");
+		System.out.println("Â¡Combate finalizado!");
 	}
 	
 	public static void Pelea() {

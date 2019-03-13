@@ -17,7 +17,7 @@ public class Personaje1 extends Personaje {
 	public Personaje1() {
 		super();
 		this.setId(1);
-		this.setNombre("SpiderMan");
+		this.setNombre(EjercicioPropiedades.getProperty("NOMBREPJ1"));
 		this.setVida(100);
 		this.setFuerza(60);	
 	}
