@@ -44,7 +44,7 @@ public class EjemploHashMap {
 	 * 
 	 */
 	private static void ejemploHashMapEspecifico () {
-		// Creaci�n de un HashMap general
+		// Creaci�n de un HashMap especifico
 		HashMap<String, Persona> hm = new HashMap<String, Persona>();
 		
 		// Inserci�n de datos en un HashMap general
@@ -63,10 +63,7 @@ public class EjemploHashMap {
 		while (personas.hasNext()) {
 			System.out.println("Objeto obtenido: "  + personas.next());
 		}
-		
-		//Coger un objeto del hashmap
-		
-		//hm.get(key);
+	
 		
 	}
 	
