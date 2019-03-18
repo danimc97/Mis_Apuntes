@@ -2,9 +2,9 @@ package examenMarzo2019;
 
 public class Pescaderia extends Articulo {
 
-	public Pescaderia(String codigoBarras, String nombre, int cantidad, int precio) {
+	public Pescaderia(String codigoBarras, String nombre, int cantidad, int precio, boolean fresco) {
 		super(codigoBarras, nombre, cantidad, precio);
-		// TODO Auto-generated constructor stub
+		this.fresco=fresco;
 	}
 
 	private boolean fresco=true;

@@ -21,7 +21,7 @@ public class Cliente {
 		carro.add(new Fruteria("1", "Manzana", 1, 6));
 		carro.add(new Lacteos("2", "Yogur", 1, 6));
 		carro.add(new Perfumeria("3", "Perfume", 3, 6));
-		carro.add(new Pescaderia("4", "Sardina", 1, 6));
+		carro.add(new Pescaderia("4", "Sardina", 1, 6, false));
 	}
 	
 	
