@@ -45,7 +45,7 @@ public class Ejemplo04_CreacionDatosEnEsquema {
 			System.out.println("Eliminando los registros de todas las tablas");
 		
 		for (String tabla : tablas) {
-			int registrosAfectados = s.executeUpdate("delete from tutorialjavacoches." + tabla);
+			int registrosAfectados = s.executeUpdate("delete from ciclistas." + tabla);
 			if (LOG)
 				System.out.println("\t" + registrosAfectados + " registros eliminados en la tabla " + tabla);
 		}
@@ -60,15 +60,16 @@ public class Ejemplo04_CreacionDatosEnEsquema {
 	 */
 	private static void creacionDatosCiclista (Connection conn) throws SQLException, ImposibleConectarException {
 		PreparedStatement ps = (PreparedStatement) conn.
-				prepareStatement("INSERT INTO ciclistas (dorsal, nombre, edad, nomeq) VALUES  (?, ?, ?, ?)");
+				prepareStatement("INSERT INTO ciclista (dorsal, nombre, edad, nomeq) VALUES  (?, ?, ?, ?)");
 		int registrosInsertados;
 		int contRegistrosInsertados = 0;		
+		int numero=1;
 		
 		if (LOG)
 			System.out.println("\nInsertando registros de en la tabla concesionario");
 
 		for (int i = 0; i < REGISTROS_A_INSERTAR_EN_CONCESIONARIO; i++) {
-			ps.setInt(1, (int) Math.round(Math.random()*20));
+			ps.setInt(1, numero+=1);
 			ps.setString(2, getStringAlAzar(nombres));
 			ps.setInt(3, (int) Math.round(Math.random()*20));
 			ps.setString(4, getStringAlAzar(nomeq));
@@ -94,14 +95,15 @@ public class Ejemplo04_CreacionDatosEnEsquema {
 		PreparedStatement ps = (PreparedStatement) conn.
 				prepareStatement("INSERT INTO etapa (netapa, km, salida, llegada,dorsal) VALUES  (?, ?, ?, ?,?)");
 		int registrosInsertados;
-		int contRegistrosInsertados = 0;		
+		int contRegistrosInsertados = 0;
+		int numero=1;
 		
 		if (LOG)
 			System.out.println("\nInsertando registros de en la tabla cliente");
 
 		for (int i = 0; i < REGISTROS_A_INSERTAR_EN_CLIENTE; i++) {
 			
-			ps.setInt(1, (int) Math.round(Math.random()*20));
+			ps.setInt(1, numero+=1);
 			ps.setInt(2, (int) Math.round(Math.random()*20));
 			ps.setString(3, getStringAlAzar(localidades));
 			ps.setString(4, getStringAlAzar(localidades));
